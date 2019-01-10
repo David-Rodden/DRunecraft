@@ -1,10 +1,12 @@
-##✨ Runecrafting methods covered in this project 🗿
+## ✨ Runecrafting methods covered in this project 🗿
 
-###Focused Altars:
+### Focused Altars:
+
 The altars listed below are those I am currently focusing on.
 Once they have been covered, more will be added.
 It should be noted that for all methods below (excluding the Abyss), a tiara will need to be used.
 The use of a talisman may be added at a later date.
+
 - [x] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=556) Air
     - [x] Simple walking
         - Using Falador south bank
@@ -48,7 +50,8 @@ The use of a talisman may be added at a later date.
         - Using Draynor wall shortcut if agility requirement met
         - Requires banking all combat equipment to access Entrana
  
- ###What about Abyss runecrafting & pouches?
+ ### What about Abyss runecrafting & pouches?
+ 
  Once the above tasks have been completed, Abyss will be the next process to tackle.
  The Abyss will be a single, but greater task, compared to those listed above.
  It will have to take into account the risk for being killed by other players as well as creatures within the abyss.
