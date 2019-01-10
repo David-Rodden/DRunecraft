@@ -1,17 +1,13 @@
 package methods;
 
-import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import tasks.*;
 
-public class DefaultAir extends CraftMethod {
-    public DefaultAir(final TreeScript handler) {
-        super(handler, 556);
-        handler.addNotedPosition("bank", new Position(3012, 3355));
-        handler.addNotedPosition("outside altar", new Position(2986, 3294));
-        handler.addNotedPosition("inside altar", new Position(2841, 4830));
-        final TreeTask head = new HasRunes("Air");
+class DefaultWalkMethod extends CraftMethod {
+    DefaultWalkMethod(final TreeScript handler, final int id, final String runeType) {
+        super(handler, id);
+        final TreeTask head = new HasRunes(runeType);
         TreeTask second = head.setLeft(new HasPureEssence());
         TreeTask third = second.setLeft(new IsBankOpen());
         TreeTask fourth = third.setLeft(new IsNearBank());
