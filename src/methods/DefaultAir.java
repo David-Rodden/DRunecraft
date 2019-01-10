@@ -7,7 +7,7 @@ import tasks.*;
 
 public class DefaultAir extends CraftMethod {
     public DefaultAir(final TreeScript handler) {
-        super(handler);
+        super(handler, 556);
         handler.addNotedPosition("bank", new Position(3012, 3355));
         handler.addNotedPosition("outside altar", new Position(2986, 3294));
         handler.addNotedPosition("inside altar", new Position(2841, 4830));

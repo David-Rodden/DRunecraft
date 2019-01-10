@@ -1,13 +1,12 @@
 package display;
 
+import methods.CraftMethod;
 import org.rspeer.runetek.api.commons.StopWatch;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -18,37 +17,26 @@ public class ProgressPaint {
     private final int runeCost, essenceCost, startExperience;
     private int runes, essence;
 
-    public ProgressPaint() {
+    public ProgressPaint(final CraftMethod method) {
         try {
             progressPaint = new ImageIcon(new URL("https://i.imgur.com/9TDsWNo.gif")).getImage();
             runePaint = new ImageIcon(new URL("https://rsbuddy.com/items/554.png")).getImage();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        runeCost = getPrice(556);
-        essenceCost = getPrice(7936);
+        runeCost = method.getRunePrice();
+        essenceCost = method.getEssencePrice();
         startExperience = Skills.getExperience(Skill.RUNECRAFTING);
         progressFont = new Font("High Tower Text", Font.PLAIN, 20);
         // Once everything is set, start our script timer
         runtime = StopWatch.start();
     }
 
-    private int getPrice(final int id) {
-        //Use a buffered reader to get the price data JSON from the OSRS GE API
-        try (final BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=" + id).openStream()))) {
-            final String raw = reader.readLine().replace(",", "").replace("\"", "").split("price:")[1].split("}")[0];
-            return Integer.parseInt(raw);
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
     public void updateRunes(final int added) {
         runes += added;
     }
 
-    public void updateEssence(final int used) {
+    private void updateEssence(final int used) {
         essence += used;
     }
 
