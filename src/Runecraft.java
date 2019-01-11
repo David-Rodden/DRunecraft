@@ -1,6 +1,6 @@
 import display.ProgressPaint;
-import methods.CastleWarsFire;
 import methods.CraftMethod;
+import methods.SimpleBody;
 import org.rspeer.runetek.event.listeners.ItemTableListener;
 import org.rspeer.runetek.event.listeners.RenderListener;
 import org.rspeer.runetek.event.types.ItemTableEvent;
@@ -19,7 +19,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public void onStart() {
         // Current initialization of crafting method is manual - will be replaced by GUI selection in near-future
-        final CraftMethod craftMethod = new CastleWarsFire(this);
+        final CraftMethod craftMethod = new SimpleBody(this);
         // Initialized craft method with fire rune method
         setHead(craftMethod.getHead());
         progressPaint = new ProgressPaint(craftMethod);
@@ -34,7 +34,11 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public void notify(final RenderEvent renderEvent) {
         final Graphics source = renderEvent.getSource();
-        if (source != null) progressPaint.displayPaint(source);
+        if (source == null) return;
+        progressPaint.displayPaint(source);
+        final String taskDescription = getTaskDescription();
+        if (taskDescription == null) return;
+        source.drawString(taskDescription, 100, 300);
     }
 
     @Override

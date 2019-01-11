@@ -20,10 +20,10 @@ public class ProgressPaint {
     public ProgressPaint(final CraftMethod method) {
         try {
             progressPaint = new ImageIcon(new URL("https://i.imgur.com/9TDsWNo.gif")).getImage();
-            runePaint = new ImageIcon(new URL("https://rsbuddy.com/items/554.png")).getImage();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        runePaint = method.getRuneIcon();
         runeCost = method.getRunePrice();
         essenceCost = method.getEssencePrice();
         startExperience = Skills.getExperience(Skill.RUNECRAFTING);

@@ -15,6 +15,6 @@ public class IsInAltar extends TreeTask {
     @Override
     public boolean validate() {
         final Position altarPosition = handler.getNotedPosition("inside altar");
-        return altarPosition != null && altarPosition.distance() < 10;
+        return altarPosition != null && altarPosition.distance() < 20;
     }
 }

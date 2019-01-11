@@ -3,8 +3,11 @@ package methods;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public abstract class CraftMethod {
@@ -12,11 +15,17 @@ public abstract class CraftMethod {
     private final TreeScript handler;
     private TreeTask head;
     private final int essencePrice, runePrice;
+    private Image runeIcon;
 
     CraftMethod(final TreeScript handler, final int id) {
         this.handler = handler;
         essencePrice = findPrice(PURE_ESSENCE_ID);
         this.runePrice = findPrice(id);
+        try {
+            this.runeIcon = new ImageIcon(new URL("https://rsbuddy.com/items/" + id + ".png")).getImage();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     void setHead(final TreeTask head) {
@@ -25,6 +34,10 @@ public abstract class CraftMethod {
 
     public TreeTask getHead() {
         return head;
+    }
+
+    public Image getRuneIcon() {
+        return runeIcon;
     }
 
     private int findPrice(final int id) {
