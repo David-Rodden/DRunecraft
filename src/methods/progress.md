@@ -24,8 +24,8 @@ The use of a talisman may be added at a later date.
     - [ ] Walking, accessing PvP bank
         - Using PvP world bank in Lumbridge courtyard
         - World hopping to PvP worlds for banking & hopping back to normal worlds to runecraft
-- [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=557) Earth
-    - [ ] Simple walking
+- [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=557) Earth
+    - [X] Simple walking
         - Using Varrock west bank
 - [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=554) Fire
     - [ ] Simple walking
@@ -33,8 +33,8 @@ The use of a talisman may be added at a later date.
     - [x] Castle wars teleportation
         - Using Castle wars chest bank
         - Requires dueling ring of 2 or more charge
-- [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=559) Body
-    - [ ] Simple walking
+- [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=559) Body
+    - [X] Simple walking
         - Using Edgeville bank
 - [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=564) Cosmic
     - [ ] Simple walking

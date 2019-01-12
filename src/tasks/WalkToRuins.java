@@ -1,7 +1,6 @@
 package tasks;
 
 import org.rspeer.runetek.api.commons.Time;
-import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
@@ -29,7 +28,7 @@ public class WalkToRuins extends TreeTask {
             Time.sleepUntil(Movement::isRunEnabled, 1000);
         }
         Movement.walkTo(outsideAltar);
-        Time.sleepUntil(() -> Movement.getDestinationDistance() < 5, Random.nextInt(5000));
+        Time.sleepUntil(() -> Movement.getDestinationDistance() < 5, 5000);
         return super.execute();
     }
 
