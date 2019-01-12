@@ -1,6 +1,6 @@
 import display.ProgressPaint;
 import methods.CraftMethod;
-import methods.SimpleWater;
+import methods.GeneralStoreNature;
 import org.rspeer.runetek.event.listeners.ItemTableListener;
 import org.rspeer.runetek.event.listeners.RenderListener;
 import org.rspeer.runetek.event.types.ItemTableEvent;
@@ -19,7 +19,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public void onStart() {
         // Current initialization of crafting method is manual - will be replaced by GUI selection in near-future
-        final CraftMethod craftMethod = new SimpleWater(this);
+        final CraftMethod craftMethod = new GeneralStoreNature(this);
         // Initialized craft method with fire rune method
         setHead(craftMethod.getHead());
         progressPaint = new ProgressPaint(craftMethod);
@@ -29,6 +29,12 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public int loop() {
         return traverseTree();
+    }
+
+    @Override
+    public void onStop() {
+        System.out.println("We've stopped for whatever reason");
+        super.onStop();
     }
 
     @Override
@@ -47,7 +53,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
         final RSItemDefinition objectDefinition = event.getDefinition();
         if (objectDefinition == null) return;
         if (objectDefinition.getName().matches(".+\\srune") && event.getChangeType() == ItemTableEvent.ChangeType.ITEM_ADDED)
-            progressPaint.updateRunes(event.getStackSize());
+            progressPaint.updateRunes(event.getStackSize() - event.getOldStackSize());
         else if (objectDefinition.getName().contains("essence") && event.getChangeType() == ItemTableEvent.ChangeType.ITEM_REMOVED)
             progressPaint.updateEssence();
     }

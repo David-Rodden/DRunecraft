@@ -40,8 +40,8 @@ The use of a talisman may be added at a later date.
     - [ ] Simple walking
         - Using Zanaris bank
         - Using best agility shortcuts if requirement is met
-- [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=561) Nature
-    - [ ] Simple walking with noted essence
+- [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=561) Nature
+    - [X] Simple walking with noted essence
         - Holding stack of noted essence in inventory to exchange at Jiminua's Jungle Store
         - Requires a stack of money to exchange the noted essence for the unnoted variant
 - [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=563) Law
