@@ -27,4 +27,9 @@ public class WithdrawRing extends TreeTask {
         // Fail if no rings left
         return -1;
     }
+
+    @Override
+    public String toString() {
+        return "Withdrawing usable dueling ring";
+    }
 }

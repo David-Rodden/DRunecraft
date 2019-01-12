@@ -20,4 +20,9 @@ public class CloseBank extends TreeTask {
         Time.sleepUntil(Bank::isClosed, 2000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Closing bank";
+    }
 }

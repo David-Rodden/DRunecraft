@@ -26,4 +26,9 @@ public class TeleportToCastleWars extends TreeTask {
         Time.sleepUntil(() -> castlewarsPosition != null && castlewarsPosition.distance() < 20, 4000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Teleporting to Castle Wars";
+    }
 }

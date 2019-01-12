@@ -23,4 +23,9 @@ public class EquipRing extends TreeTask {
         Time.sleepUntil(() -> !Inventory.contains(item -> item.getName().contains("Dueling ring")), 3000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Equipping dueling ring";
+    }
 }

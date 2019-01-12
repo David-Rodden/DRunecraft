@@ -21,4 +21,9 @@ public class BankBadRings extends TreeTask {
         Time.sleepUntil(() -> !Inventory.contains("Ring of dueling(1)"), 4000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Banking unusable ring";
+    }
 }

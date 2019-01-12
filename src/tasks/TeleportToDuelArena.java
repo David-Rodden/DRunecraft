@@ -26,4 +26,9 @@ public class TeleportToDuelArena extends TreeTask {
         Time.sleepUntil(() -> duelArenaPosition != null && duelArenaPosition.distance() < 10, 4000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Teleporting to Duel Arena";
+    }
 }
