@@ -36,9 +36,9 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
         final Graphics source = renderEvent.getSource();
         if (source == null) return;
         progressPaint.displayPaint(source);
-        final String taskDescription = getTaskDescription();
-        if (taskDescription == null) return;
-        source.drawString(taskDescription, 100, 300);
+//        final String taskDescription = getTaskDescription();
+//        if (taskDescription == null) return;
+//        source.drawString(taskDescription, 100, 300);
     }
 
     @Override

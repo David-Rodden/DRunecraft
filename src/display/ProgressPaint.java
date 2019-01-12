@@ -16,10 +16,11 @@ public class ProgressPaint {
     private Image progressPaint, runePaint;
     private final int runeCost, essenceCost, startExperience;
     private int runes, essence;
+    private final Color timeColor, runeColor, xpColor, gpColor;
 
     public ProgressPaint(final CraftMethod method) {
         try {
-            progressPaint = new ImageIcon(new URL("https://i.imgur.com/9TDsWNo.gif")).getImage();
+            progressPaint = new ImageIcon(new URL("https://i.imgur.com/rUne8Pt.gif")).getImage();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -28,6 +29,10 @@ public class ProgressPaint {
         essenceCost = method.getEssencePrice();
         startExperience = Skills.getExperience(Skill.RUNECRAFTING);
         progressFont = new Font("High Tower Text", Font.PLAIN, 20);
+        timeColor = new Color(201, 201, 201);
+        runeColor = new Color(97, 199, 201);
+        xpColor = new Color(221, 130, 224);
+        gpColor = new Color(133, 193, 91);
         // Once everything is set, start our script timer
         runtime = StopWatch.start();
     }
@@ -46,17 +51,23 @@ public class ProgressPaint {
 
     public void displayPaint(final Graphics graphics) {
         graphics.setFont(progressFont);
-        graphics.setColor(Color.ORANGE);
         if (progressPaint == null) return;
         graphics.drawImage(progressPaint, 6, 344, null);
-        graphics.drawImage(runePaint, 48, 353, null);
-        graphics.drawString(runtime.toElapsedString(), 155, 409);
+        graphics.drawImage(runePaint, 33, 418, null);
+        graphics.setColor(timeColor);
+        graphics.drawString(runtime.toElapsedString(), 60, 375);
+        graphics.setColor(runeColor);
+        graphics.drawString(String.valueOf(runes), 80, 430);
         final int hourlyRunes = (int) runtime.getHourlyRate(runes);
-        graphics.drawString(String.format("%d : %s /hr", runes, hourlyRunes > 1000 ? hourlyRunes / 1000 + "K" : hourlyRunes), 155, 429);
+        graphics.drawString(String.format("%s ph", hourlyRunes >= 1000 ? hourlyRunes / 1000 + "K" : hourlyRunes), 80, 450);
         final int gainedExperience = Skills.getExperience(Skill.RUNECRAFTING) - startExperience, hourlyExperience = (int) runtime.getHourlyRate(gainedExperience);
-        graphics.drawString(String.format("%d : %s /hr", gainedExperience, hourlyExperience > 1000 ? hourlyExperience / 1000 + "K" : hourlyExperience), 155, 449);
+        graphics.setColor(xpColor);
+        graphics.drawString(String.valueOf(gainedExperience), 240, 430);
+        graphics.drawString(String.format("%s ph", hourlyExperience >= 1000 ? hourlyExperience / 1000 + "K" : hourlyExperience), 240, 450);
         final int hourlyEssence = (int) runtime.getHourlyRate(essence), hourlyProfit = hourlyRunes * runeCost - hourlyEssence * essenceCost;
-        graphics.drawString(String.format("%d : %s GP/hr", runes * runeCost - essence * essenceCost, hourlyProfit > 1000 ? hourlyProfit / 1000 + "K" : hourlyProfit), 155, 469);
+        graphics.setColor(gpColor);
+        graphics.drawString(String.valueOf(runes * runeCost - essence * essenceCost), 400, 430);
+        graphics.drawString(String.format("%s ph", hourlyProfit >= 1000 ? hourlyProfit / 1000 + "K" : hourlyProfit), 400, 450);
 
     }
 }
