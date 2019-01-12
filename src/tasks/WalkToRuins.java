@@ -28,7 +28,7 @@ public class WalkToRuins extends TreeTask {
             Time.sleepUntil(Movement::isRunEnabled, 1000);
         }
         Movement.walkTo(outsideAltar);
-        Time.sleepUntil(() -> Movement.getDestinationDistance() < 5, 5000);
+        Time.sleepUntil(() -> !Movement.isDestinationSet() || Movement.getDestinationDistance() < 5, 5000);
         return super.execute();
     }
 

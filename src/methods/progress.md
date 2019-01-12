@@ -19,11 +19,11 @@ The use of a talisman may be added at a later date.
         - Same as above, using runes instead of teleport tablets
         - Must be using the correct spellbook
 - [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=555) Water
-    - [ ] Simple walking
-        - Using Draynor bank
+    - [X] Simple walking
+        - Using Lumbridge bank
     - [ ] Walking, accessing PvP bank
         - Using PvP world bank in Lumbridge courtyard
-        - World hopping to PvP worlds for banking & hopping back to normal worlds to runecraft
+        - World hopping g PvP worlds for banking & hopping back to normal worlds to runecraft
 - [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=557) Earth
     - [X] Simple walking
         - Using Varrock west bank

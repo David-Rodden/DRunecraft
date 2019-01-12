@@ -1,6 +1,6 @@
 import display.ProgressPaint;
 import methods.CraftMethod;
-import methods.SimpleBody;
+import methods.SimpleWater;
 import org.rspeer.runetek.event.listeners.ItemTableListener;
 import org.rspeer.runetek.event.listeners.RenderListener;
 import org.rspeer.runetek.event.types.ItemTableEvent;
@@ -19,7 +19,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public void onStart() {
         // Current initialization of crafting method is manual - will be replaced by GUI selection in near-future
-        final CraftMethod craftMethod = new SimpleBody(this);
+        final CraftMethod craftMethod = new SimpleWater(this);
         // Initialized craft method with fire rune method
         setHead(craftMethod.getHead());
         progressPaint = new ProgressPaint(craftMethod);
