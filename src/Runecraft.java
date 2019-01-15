@@ -1,6 +1,7 @@
 import display.ProgressPaint;
 import methods.CraftMethod;
 import methods.GeneralStoreNature;
+import methods.SimpleBody;
 import org.rspeer.runetek.event.listeners.ItemTableListener;
 import org.rspeer.runetek.event.listeners.RenderListener;
 import org.rspeer.runetek.event.types.ItemTableEvent;
@@ -34,6 +35,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public void onStop() {
         System.out.println("We've stopped for whatever reason");
+        System.out.println("Info: " + getTaskDescription());
         super.onStop();
     }
 

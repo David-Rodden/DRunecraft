@@ -28,7 +28,7 @@ public class WalkToJiminua extends TreeTask {
         if (generalStorePosition == null) return super.execute();
         // Start running if aggressive monsters are nearby
         final Npc monster = Npcs.getNearest(npc -> npc.getCombatLevel() * 2 > Players.getLocal().getCombatLevel());
-        if (!Movement.isRunEnabled() && (Movement.getRunEnergy() > 20 || (monster != null && Movement.getRunEnergy() > 5))) {
+        if (!Movement.isRunEnabled() && (Movement.getRunEnergy() > 20 || (monster != null && monster.distance() < 5 && Movement.getRunEnergy() > 5))) {
             Movement.toggleRun(true);
             Time.sleepUntil(Movement::isRunEnabled, 1000);
         }
