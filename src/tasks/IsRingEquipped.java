@@ -13,6 +13,6 @@ public class IsRingEquipped extends TreeTask {
         final String ringName = EquipmentSlot.RING.getItemName();
         if (ringName == null) return false;
         final String ringCharge = ringName.replaceAll("\\D", "");
-        return !ringCharge.isEmpty() && Integer.parseInt(ringName) >= 2;
+        return !ringCharge.isEmpty() && Integer.parseInt(ringCharge) >= 2;
     }
 }

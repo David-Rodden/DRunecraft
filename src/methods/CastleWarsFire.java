@@ -9,7 +9,7 @@ public class CastleWarsFire extends CraftMethod {
     public CastleWarsFire(final TreeScript handler) {
         super(handler, 554);
         // TODO: 1/10/2019 Change castle wars location from bank tile to ring of dueling teleport tile
-        handler.addNotedPosition("castle wars", new Position(2443, 3083));
+        handler.addNotedPosition("castle wars", new Position(2440, 3089));
         handler.addNotedPosition("duel arena", new Position(3312, 3235));
         handler.addNotedPosition("outside altar", new Position(3312, 3253));
         handler.addNotedPosition("inside altar", new Position(2576, 4848));

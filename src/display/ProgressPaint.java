@@ -68,6 +68,11 @@ public class ProgressPaint {
         graphics.setColor(gpColor);
         graphics.drawString(String.valueOf(runes * runeCost - essence * essenceCost), 400, 430);
         graphics.drawString(String.format("%s ph", hourlyProfit >= 1000 ? hourlyProfit / 1000 + "K" : hourlyProfit), 400, 450);
+    }
 
+    public void displayPaint(final Graphics graphics, final String description) {
+        displayPaint(graphics);
+        graphics.setColor(Color.WHITE);
+        graphics.drawString(description, 200, 200);
     }
 }
