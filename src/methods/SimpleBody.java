@@ -9,5 +9,6 @@ public class SimpleBody extends DefaultWalkMethod {
         handler.addNotedPosition("bank", new Position(3091, 3491));
         handler.addNotedPosition("outside altar", new Position(3055, 3443));
         handler.addNotedPosition("inside altar", new Position(2521, 4844));
+        buildTree();
     }
 }

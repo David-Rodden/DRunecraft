@@ -5,8 +5,16 @@ import task_structure.TreeTask;
 import tasks.*;
 
 class DefaultWalkMethod extends CraftMethod {
+    private final TreeScript handler;
+    private final String runeType;
+
     DefaultWalkMethod(final TreeScript handler, final int id, final String runeType) {
         super(handler, id);
+        this.handler = handler;
+        this.runeType = runeType;
+    }
+
+    void buildTree() {
         final TreeTask head = new HasRunes(runeType);
         TreeTask second = head.setLeft(new HasPureEssence());
         TreeTask third = second.setLeft(new IsBankOpen());
