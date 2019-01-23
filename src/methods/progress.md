@@ -27,9 +27,9 @@ The use of a talisman may be added at a later date.
 - [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=557) Earth
     - [X] Simple walking
         - Using Varrock west bank
-- [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=554) Fire
-    - [ ] Simple walking
-        - Using Duel Arena chest bank
+- [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=554) Fire
+    - [X] Simple walking
+        - Using Clan wars chest bank
     - [x] Castle wars teleportation
         - Using Castle wars chest bank
         - Requires dueling ring of 2 or more charge
