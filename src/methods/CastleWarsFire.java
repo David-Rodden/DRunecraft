@@ -1,5 +1,6 @@
 package methods;
 
+import org.rspeer.runetek.api.commons.BankLocation;
 import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
@@ -18,7 +19,7 @@ public class CastleWarsFire extends CraftMethod {
         TreeTask fourth = third.setLeft(new IsNearBank());
         TreeTask fifth = fourth.setLeft(new IsNearCastlewars(handler));
         fifth.setLeft(new TeleportToCastleWars(handler));
-        fifth.setRight(new WalkToBank());
+        fifth.setRight(new WalkToBank(BankLocation.CASTLE_WARS));
         fifth = fourth.setRight(new IsRingInInventory());
         fifth.setLeft(new OpenBank());
         fifth.setRight(new EquipRing());
@@ -32,7 +33,9 @@ public class CastleWarsFire extends CraftMethod {
         third = second.setRight(new IsInAltar(handler));
         fourth = third.setLeft(new IsNearRuins(handler));
         fifth = fourth.setLeft(new IsNearDuelArena(handler));
-        fifth.setLeft(new TeleportToDuelArena(handler));
+        sixth = fifth.setLeft(new IsBankOpen());
+        sixth.setLeft(new TeleportToDuelArena(handler));
+        sixth.setRight(new CloseBank());
         fifth.setRight(new WalkToRuins(handler));
         fourth.setRight(new EnterRuins(handler));
         third.setRight(new CraftRunes(handler));
@@ -40,7 +43,7 @@ public class CastleWarsFire extends CraftMethod {
         third = second.setLeft(new IsNearBank());
         fourth = third.setLeft(new IsNearCastlewars(handler));
         fourth.setLeft(new TeleportToCastleWars(handler));
-        fourth.setRight(new WalkToBank());
+        fourth.setRight(new WalkToBank(BankLocation.CASTLE_WARS));
         third.setRight(new OpenBank());
         second.setRight(new DepositRunes());
         setHead(head);

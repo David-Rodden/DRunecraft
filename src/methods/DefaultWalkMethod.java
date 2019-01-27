@@ -1,5 +1,6 @@
 package methods;
 
+import org.rspeer.runetek.api.commons.BankLocation;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import tasks.*;
@@ -14,12 +15,12 @@ class DefaultWalkMethod extends CraftMethod {
         this.runeType = runeType;
     }
 
-    void buildTree() {
+    void buildTree(final BankLocation bankLocation) {
         final TreeTask head = new HasRunes(runeType);
         TreeTask second = head.setLeft(new HasPureEssence());
         TreeTask third = second.setLeft(new IsBankOpen());
         TreeTask fourth = third.setLeft(new IsNearBank());
-        fourth.setLeft(new WalkToBank());
+        fourth.setLeft(new WalkToBank(bankLocation));
         fourth.setRight(new OpenBank());
         third.setRight(new WithdrawPureEssence());
         third = second.setRight(new IsInAltar(handler));
@@ -30,7 +31,7 @@ class DefaultWalkMethod extends CraftMethod {
         second = head.setRight(new IsBankOpen());
         third = second.setLeft(new IsNearBank());
         fourth = third.setLeft(new IsInAltar(handler));
-        fourth.setLeft(new WalkToBank());
+        fourth.setLeft(new WalkToBank(bankLocation));
         fourth.setRight(new ExitAltar(handler));
         third.setRight(new OpenBank());
         second.setRight(new DepositRunes());
