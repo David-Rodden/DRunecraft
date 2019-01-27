@@ -8,7 +8,7 @@ import org.rspeer.runetek.api.scene.SceneObjects;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 
-public class CraftRunes extends TreeTask{
+public class CraftRunes extends TreeTask {
     private final TreeScript handler;
 
     public CraftRunes(final TreeScript handler) {
@@ -25,10 +25,10 @@ public class CraftRunes extends TreeTask{
     @Override
     public int execute() {
         final SceneObject altar = SceneObjects.getNearest("Altar");
-        if (altar != null) {
-            altar.interact("Craft-rune");
-            Time.sleepUntil(() -> !Inventory.contains("Pure essence") && !Players.getLocal().isAnimating(), 5000);
-        }
+        if (altar == null) return super.execute();
+        altar.interact("Craft-rune");
+        Time.sleepUntil(() -> !Inventory.contains("Pure essence") && !Players.getLocal().isAnimating(), 5000);
+        Time.sleep(600, 900);
         return super.execute();
     }
 

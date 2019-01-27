@@ -17,10 +17,10 @@ public class EquipRing extends TreeTask {
 
     @Override
     public int execute() {
-        final Item ring = Inventory.getFirst(item -> item.getName().contains("Dueling ring"));
+        final Item ring = Inventory.getFirst(item -> item.getName().contains("Ring of dueling"));
         if (ring == null) return super.execute();
         ring.interact("Wear");
-        Time.sleepUntil(() -> !Inventory.contains(item -> item.getName().contains("Dueling ring")), 3000);
+        Time.sleepUntil(() -> !Inventory.contains(item -> item.getName().matches("Ring of dueling\\([2-8]\\)")), 3000);
         return super.execute();
     }
 

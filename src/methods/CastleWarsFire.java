@@ -8,7 +8,6 @@ import tasks.*;
 public class CastleWarsFire extends CraftMethod {
     public CastleWarsFire(final TreeScript handler) {
         super(handler, 554);
-        // TODO: 1/10/2019 Change castle wars location from bank tile to ring of dueling teleport tile
         handler.addNotedPosition("castle wars", new Position(2440, 3089));
         handler.addNotedPosition("duel arena", new Position(3312, 3235));
         handler.addNotedPosition("outside altar", new Position(3312, 3253));
@@ -23,13 +22,13 @@ public class CastleWarsFire extends CraftMethod {
         fifth = fourth.setRight(new IsRingInInventory());
         fifth.setLeft(new OpenBank());
         fifth.setRight(new EquipRing());
-        fourth = third.setRight(new IsRingEquipped());
-        fifth = fourth.setLeft(new IsRingInInventory());
-        TreeTask sixth = fifth.setLeft(new HaveBadRings());
+        fourth = third.setRight(new IsBadRingInInventory());
+        fifth = fourth.setLeft(new IsRingEquipped());
+        TreeTask sixth = fifth.setLeft(new IsRingInInventory());
         sixth.setLeft(new WithdrawRing());
-        sixth.setRight(new BankBadRings());
-        fifth.setRight(new CloseBank());
-        fourth.setRight(new WithdrawPureEssence());
+        sixth.setRight(new CloseBank());
+        fifth.setRight(new WithdrawPureEssence());
+        fourth.setRight(new BankBadRings());
         third = second.setRight(new IsInAltar(handler));
         fourth = third.setLeft(new IsNearRuins(handler));
         fifth = fourth.setLeft(new IsNearDuelArena(handler));

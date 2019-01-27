@@ -3,8 +3,8 @@ package tasks;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeTask;
 
-public class HaveBadRings extends TreeTask {
-    public HaveBadRings() {
+public class IsBadRingInInventory extends TreeTask {
+    public IsBadRingInInventory() {
         super(false);
     }
 

@@ -18,7 +18,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public void onStart() {
         // Current initialization of crafting method is manual - will be replaced by GUI selection in near-future
-        final CraftMethod craftMethod = new SimpleFire(this);
+        final CraftMethod craftMethod = new CastleWarsFire(this);
         // Initialized craft method with fire rune method
         setHead(craftMethod.getHead());
         progressPaint = new ProgressPaint(craftMethod);
@@ -41,10 +41,8 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     public void notify(final RenderEvent renderEvent) {
         final Graphics source = renderEvent.getSource();
         if (source == null) return;
-        progressPaint.displayPaint(source);
-//        final String taskDescription = getTaskDescription();
-//        if (taskDescription == null) return;
-//        source.drawString(taskDescription, 100, 300);
+//        progressPaint.displayPaint(source);
+        progressPaint.displayPaint(source, getTaskDescription());
     }
 
     @Override

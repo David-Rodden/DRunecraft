@@ -15,6 +15,6 @@ public class IsNearCastlewars extends TreeTask {
     @Override
     public boolean validate() {
         final Position castlewarsPosition = handler.getNotedPosition("castle wars");
-        return castlewarsPosition != null && castlewarsPosition.distance() < 20;
+        return castlewarsPosition != null && castlewarsPosition.distance() < 100;
     }
 }
