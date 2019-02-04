@@ -3,12 +3,9 @@ package display;
 import methods.CraftMethod;
 import methods.CraftMethods;
 import org.rspeer.runetek.api.ClientSupplier;
-import org.rspeer.runetek.providers.subclass.GameCanvas;
 import task_structure.TreeScript;
 
 import javax.swing.*;
-import java.awt.*;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class RunecraftGUI extends JFrame {
@@ -50,16 +47,9 @@ public class RunecraftGUI extends JFrame {
     }
 
     public CraftMethod getMethod(final TreeScript handler) {
-        final Constructor<?> craftConstructor;
         try {
-            craftConstructor = craftClass.getDeclaredConstructor(TreeScript.class);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            return null;
-        }
-        try {
-            return (CraftMethod) craftConstructor.newInstance(handler);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            return (CraftMethod) craftClass.getDeclaredConstructor(TreeScript.class).newInstance(handler);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;
