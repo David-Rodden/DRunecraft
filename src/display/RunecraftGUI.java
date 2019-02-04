@@ -2,6 +2,8 @@ package display;
 
 import methods.CraftMethod;
 import methods.CraftMethods;
+import org.rspeer.runetek.api.ClientSupplier;
+import org.rspeer.runetek.providers.subclass.GameCanvas;
 import task_structure.TreeScript;
 
 import javax.swing.*;
@@ -9,31 +11,38 @@ import java.awt.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class RunecraftGUI extends Frame {
+public class RunecraftGUI extends JFrame {
     private JComboBox<CraftMethods> methodChoice;
     private JPanel selectionPanel;
     private JButton startButton;
-    private Class<?> craftMethod;
+    private Class<?> craftClass;
     private boolean hasBeenSet;
-    private int selectedId;
+
+    public static void main(String[] args) {
+        new RunecraftGUI();
+    }
 
     public RunecraftGUI() {
+        super("DRunecraft Selection");
         hasBeenSet = false;
-        final JFrame frame = new JFrame("Runecraft Selection");
-        frame.setContentPane(selectionPanel);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.pack();
+        setContentPane(selectionPanel);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setLocationRelativeTo(ClientSupplier.get().getCanvas());
         for (final CraftMethods method : CraftMethods.values())
             methodChoice.addItem(method);
         startButton.addActionListener(e -> {
             final CraftMethods selected = (CraftMethods) methodChoice.getSelectedItem();
             if (selected == null) return;
-            craftMethod = selected.getMethod();
-            selectedId = selected.getId();
-            frame.setVisible(false);
+            craftClass = selected.getMethod();
+            setVisible(false);
             hasBeenSet = true;
         });
-        frame.setVisible(true);
+        pack();
+        setVisible(true);
+    }
+
+    public boolean isHidden() {
+        return !isVisible();
     }
 
     public boolean hasBeenSet() {
@@ -41,15 +50,15 @@ public class RunecraftGUI extends Frame {
     }
 
     public CraftMethod getMethod(final TreeScript handler) {
-        final Constructor<?> methodConstructor;
+        final Constructor<?> craftConstructor;
         try {
-            methodConstructor = craftMethod.getDeclaredConstructor(TreeScript.class);
+            craftConstructor = craftClass.getDeclaredConstructor(TreeScript.class);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
             return null;
         }
         try {
-            return (CraftMethod) methodConstructor.newInstance(handler);
+            return (CraftMethod) craftConstructor.newInstance(handler);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

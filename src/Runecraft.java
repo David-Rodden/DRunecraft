@@ -25,7 +25,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
 
     @Override
     public int loop() {
-        if (!runecraftGUI.hasBeenSet()) return 2000;
+        if (!runecraftGUI.hasBeenSet()) return runecraftGUI.isHidden() ? -1 : 2000;
         if (!isHeadSet()) {
             final CraftMethod craftMethod = runecraftGUI.getMethod(this);
             setHead(craftMethod.getHead());
@@ -36,18 +36,15 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
 
     @Override
     public void onStop() {
-        System.out.println("We've stopped for whatever reason");
-        System.out.println("Info: " + getTaskDescription());
+        if (progressPaint != null) System.out.println(progressPaint);
         super.onStop();
     }
 
     @Override
     public void notify(final RenderEvent renderEvent) {
         final Graphics source = renderEvent.getSource();
-        final String taskDescription;
-        if (source == null || progressPaint == null || (taskDescription = getTaskDescription()) == null) return;
-//        progressPaint.displayPaint(source);
-        progressPaint.displayPaint(source, taskDescription);
+        if (source == null || progressPaint == null) return;
+        progressPaint.displayPaint(source);
     }
 
     @Override

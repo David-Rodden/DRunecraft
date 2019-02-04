@@ -75,4 +75,9 @@ public class ProgressPaint {
         graphics.setColor(Color.WHITE);
         graphics.drawString(description, 200, 200);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Total Runtime: %s, Experience Gained: %d, Money Accrued: %d", runtime.toElapsedString(), Skills.getExperience(Skill.RUNECRAFTING) - startExperience, runes * runeCost - essence * essenceCost);
+    }
 }
