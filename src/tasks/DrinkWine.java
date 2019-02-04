@@ -1,4 +1,4 @@
-package methods;
+package tasks;
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;

@@ -10,14 +10,15 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public abstract class CraftMethod {
+public class CraftMethod {
     private static final int PURE_ESSENCE_ID = 7936;
     private final TreeScript handler;
     private TreeTask head;
-    private final int essencePrice, runePrice;
+    private final int id, essencePrice, runePrice;
     private Image runeIcon;
 
     CraftMethod(final TreeScript handler, final int id) {
+        this.id = id;
         this.handler = handler;
         essencePrice = findPrice(PURE_ESSENCE_ID);
         this.runePrice = findPrice(id);

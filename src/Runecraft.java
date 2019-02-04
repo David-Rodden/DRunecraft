@@ -1,5 +1,6 @@
 import display.ProgressPaint;
-import methods.*;
+import display.RunecraftGUI;
+import methods.CraftMethod;
 import org.rspeer.runetek.event.listeners.ItemTableListener;
 import org.rspeer.runetek.event.listeners.RenderListener;
 import org.rspeer.runetek.event.types.ItemTableEvent;
@@ -11,22 +12,25 @@ import task_structure.TreeScript;
 
 import java.awt.*;
 
-@ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.1)
+@ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.2)
 public class Runecraft extends TreeScript implements RenderListener, ItemTableListener {
+    private RunecraftGUI runecraftGUI;
     private ProgressPaint progressPaint;
 
     @Override
     public void onStart() {
-        // Current initialization of crafting method is manual - will be replaced by GUI selection in near-future
-        final CraftMethod craftMethod = new CastleWarsFire(this);
-        // Initialized craft method with fire rune method
-        setHead(craftMethod.getHead());
-        progressPaint = new ProgressPaint(craftMethod);
+        runecraftGUI = new RunecraftGUI();
         super.onStart();
     }
 
     @Override
     public int loop() {
+        if (!runecraftGUI.hasBeenSet()) return 2000;
+        if (!isHeadSet()) {
+            final CraftMethod craftMethod = runecraftGUI.getMethod(this);
+            setHead(craftMethod.getHead());
+            progressPaint = new ProgressPaint(craftMethod);
+        }
         return traverseTree();
     }
 
@@ -40,9 +44,10 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public void notify(final RenderEvent renderEvent) {
         final Graphics source = renderEvent.getSource();
-        if (source == null) return;
+        final String taskDescription;
+        if (source == null || progressPaint == null || (taskDescription = getTaskDescription()) == null) return;
 //        progressPaint.displayPaint(source);
-        progressPaint.displayPaint(source, getTaskDescription());
+        progressPaint.displayPaint(source, taskDescription);
     }
 
     @Override

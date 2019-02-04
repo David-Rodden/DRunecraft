@@ -8,7 +8,7 @@ import tasks.*;
 
 public class CastleWarsFire extends CraftMethod {
     public CastleWarsFire(final TreeScript handler) {
-        super(handler, 554);
+        super(handler, CraftMethods.CASTLE_WARS_FIRE.getId());
         handler.addNotedPosition("castle wars", new Position(2440, 3089));
         handler.addNotedPosition("duel arena", new Position(3312, 3235));
         handler.addNotedPosition("outside altar", new Position(3312, 3253));
