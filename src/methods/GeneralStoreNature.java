@@ -8,7 +8,7 @@ import tasks.*;
 public class GeneralStoreNature extends CraftMethod {
 
     public GeneralStoreNature(final TreeScript handler) {
-        super(handler, 561);
+        super(handler, CraftMethods.GENERAL_STORE_NATURE.getId());
         handler.addNotedPosition("general store", new Position(2768, 3120));
         handler.addNotedPosition("outside altar", new Position(2867, 3020));
         handler.addNotedPosition("inside altar", new Position(2400, 4837));

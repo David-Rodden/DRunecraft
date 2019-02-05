@@ -25,7 +25,6 @@ public class WithdrawPureEssence extends TreeTask {
         if (!Bank.contains("Pure essence")) {
             Time.sleepUntil(() -> Bank.contains("Pure essence"), Random.high(500, 1000));
             withdrawAttempts++;
-            System.out.println("Could't find essence; count: " + withdrawAttempts);
             return withdrawAttempts == MAXIMUM_WITHDRAWAL_ATTEMPTS ? -1 : super.execute();
         }
         Bank.withdraw("Pure essence", Inventory.getFreeSlots());
