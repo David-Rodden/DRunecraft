@@ -7,10 +7,10 @@ Once they have been covered, more will be added.
 It should be noted that for all methods below (excluding the Abyss), a tiara will need to be used.
 The use of a talisman may be added at a later date.
 
-- [x] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=556) Air
+- [x] ![](https://i.imgur.com/rYxo1cJ.png) Air
     - [x] Simple walking
         - Using Falador south bank
-- [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=558) Mind
+- [ ] ![](https://i.imgur.com/1wfOVgd.png) Mind
     - [ ] Arceuus teleport tablet teleportation
         - Using Castle wars bank
         - Requires dueling ring of 1 or more charge
@@ -18,33 +18,33 @@ The use of a talisman may be added at a later date.
     - [ ] Arceuus spellbook teleportation
         - Same as above, using runes instead of teleport tablets
         - Must be using the correct spellbook
-- [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=555) Water
+- [ ] ![](https://i.imgur.com/twU9UVe.png) Water
     - [X] Simple walking
         - Using Lumbridge bank
     - [ ] Walking, accessing PvP bank
         - Using PvP world bank in Lumbridge courtyard
         - World hopping g PvP worlds for banking & hopping back to normal worlds to runecraft
-- [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=557) Earth
+- [X] ![](https://i.imgur.com/t9cqIz6.png) Earth
     - [X] Simple walking
         - Using Varrock west bank
-- [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=554) Fire
+- [X] ![](https://i.imgur.com/GKpGwUA.png) Fire
     - [X] Simple walking
         - Using Clan wars chest bank
     - [x] Castle wars teleportation
         - Using Castle wars chest bank
         - Requires dueling ring of 2 or more charge
-- [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=559) Body
+- [X] ![](https://i.imgur.com/K3uoxC6.png) Body
     - [X] Simple walking
         - Using Edgeville bank
-- [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=564) Cosmic
+- [ ] ![](https://i.imgur.com/9AY11jc.png) Cosmic
     - [ ] Simple walking
         - Using Zanaris bank
         - Using best agility shortcuts if requirement is met
-- [X] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=561) Nature
+- [X] ![](https://i.imgur.com/ONEDg0D.png) Nature
     - [X] Simple walking with noted essence
         - Holding stack of noted essence in inventory to exchange at Jiminua's Jungle Store
         - Requires a stack of money to exchange the noted essence for the unnoted variant
-- [ ] ![](http://services.runescape.com/m=itemdb_oldschool/1547119764647_obj_sprite.gif?id=563) Law
+- [ ] ![](https://i.imgur.com/lUCSZJp.png) Law
     - [ ] Simple walking
         - Using Draynor bank
         - Using Draynor wall shortcut if agility requirement met
