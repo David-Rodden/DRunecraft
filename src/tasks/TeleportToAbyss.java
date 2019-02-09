@@ -29,4 +29,9 @@ public class TeleportToAbyss extends TreeTask {
         Time.sleepUntil(() -> centerAbyssPosition != null && centerAbyssPosition.distance() < 50, 6000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Teleporting to Abyss";
+    }
 }

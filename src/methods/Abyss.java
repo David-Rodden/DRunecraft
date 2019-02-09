@@ -11,6 +11,7 @@ public class Abyss extends CraftMethod {
     public Abyss(final TreeScript handler) {
         super(handler, CraftMethods.ABYSS.getId());
         handler.addNotedPosition("mage", new Position(3107, 3557));
+        handler.addNotedPosition("center abyss", new Position(3037, 4830));
         final TreeTask head = new HasRunes("Nature");
         head.setLeft(new WalkToMage(handler));
         head.setRight(new OpenBank());

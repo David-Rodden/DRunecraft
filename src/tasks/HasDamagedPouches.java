@@ -13,7 +13,7 @@ public class HasDamagedPouches extends TreeTask {
     @Override
     public boolean validate() {
         for (final Pouches pouch : Pouches.values())
-            if (Inventory.contains(pouch.toString()) && !Inventory.contains(pouch.getId())) return false;
-        return true;
+            if (Inventory.contains(pouch.toString()) && !Inventory.contains(pouch.getId())) return true;
+        return false;
     }
 }

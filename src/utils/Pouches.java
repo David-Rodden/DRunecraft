@@ -1,7 +1,7 @@
 package utils;
 
 public enum Pouches {
-    SMALL(5509), MEDIUM(5510), LARGE(5511), GIANT(5512);
+    SMALL(5509), MEDIUM(5510), LARGE(5512), GIANT(5514);
 
     private final int id;
 

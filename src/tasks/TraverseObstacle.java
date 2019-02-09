@@ -29,4 +29,9 @@ public class TraverseObstacle extends TreeTask {
         Time.sleepUntil(obstacle::isPositionInteractable, obstacle.distance() > CLICK_DISTANCE ? 5000 : 2000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Traversing Abyss obstacle";
+    }
 }
