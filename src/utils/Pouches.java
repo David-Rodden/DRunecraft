@@ -1,16 +1,22 @@
 package utils;
 
 public enum Pouches {
-    SMALL(5509), MEDIUM(5510), LARGE(5512), GIANT(5514);
+    // TODO: 2/9/2019 Unsure about GIANT pouch bitsize
+    SMALL(5509, 1), MEDIUM(5510, 2), LARGE(5512, 4), GIANT(5514, 6);
 
-    private final int id;
+    private final int id, bitSize;
 
-    Pouches(final int id) {
+    Pouches(final int id, final int bitSize) {
         this.id = id;
+        this.bitSize = bitSize;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getBitSize() {
+        return bitSize;
     }
 
     @Override

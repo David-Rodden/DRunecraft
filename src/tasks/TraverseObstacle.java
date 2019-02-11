@@ -23,7 +23,7 @@ public class TraverseObstacle extends TreeTask {
 
     @Override
     public int execute() {
-        final SceneObject obstacle = SceneObjects.getNearest(traversable -> handler.getNotedFlag(traversable.getName()));
+        final SceneObject obstacle = SceneObjects.getNearest(traversable -> handler.getNotedFlag(traversable.getName() ));
         if (obstacle == null) return super.execute();
         obstacle.interact(AbyssObstacles.valueOf(obstacle.getName().toUpperCase()).getAction());
         Time.sleepUntil(obstacle::isPositionInteractable, obstacle.distance() > CLICK_DISTANCE ? 5000 : 2000);

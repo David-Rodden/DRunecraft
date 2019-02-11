@@ -23,7 +23,7 @@ public class UseClanWarsPortal extends TreeTask {
     @Override
     public int execute() {
         final SceneObject portal = SceneObjects.getNearest("Free-for-all portal");
-        final Position freeForAllPosition = handler.getNotedPosition("center ffa");
+        final Position freeForAllPosition = handler.getNotedPosition("inner ffa");
         if (portal != null && freeForAllPosition != null) {
             portal.interact("Enter");
             Time.sleepUntil(() -> freeForAllPosition.distance() < 10, 3000);

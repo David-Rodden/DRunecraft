@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CraftMethod {
-    private static final int PURE_ESSENCE_ID = 7936;
+    public static final int PURE_ESSENCE_ID = 7936;
     private final TreeScript handler;
     private TreeTask head;
     private final int id, essencePrice, runePrice;
