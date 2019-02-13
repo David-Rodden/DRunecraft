@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
@@ -23,10 +24,11 @@ public class TraverseObstacle extends TreeTask {
 
     @Override
     public int execute() {
-        final SceneObject obstacle = SceneObjects.getNearest(traversable -> handler.getNotedFlag(traversable.getName() ));
+        final SceneObject obstacle = SceneObjects.getNearest(traversable -> handler.getNotedSetting(traversable.getName()));
         if (obstacle == null) return super.execute();
+        System.out.println(obstacle.getName());
         obstacle.interact(AbyssObstacles.valueOf(obstacle.getName().toUpperCase()).getAction());
-        Time.sleepUntil(obstacle::isPositionInteractable, obstacle.distance() > CLICK_DISTANCE ? 5000 : 2000);
+        Time.sleepUntil(() -> !obstacle.isPositionInteractable(), Random.high(1800, obstacle.distance() > CLICK_DISTANCE ? 5000 : 2000));
         return super.execute();
     }
 

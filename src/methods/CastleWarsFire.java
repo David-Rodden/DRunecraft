@@ -24,7 +24,7 @@ public class CastleWarsFire extends CraftMethod {
         fifth.setLeft(new OpenBank());
         fifth.setRight(new EquipRing());
         fourth = third.setRight(new IsBadRingInInventory());
-        fifth = fourth.setLeft(new IsRingEquipped());
+        fifth = fourth.setLeft(new IsRingEquipped(true));
         TreeTask sixth = fifth.setLeft(new IsRingInInventory());
         sixth.setLeft(new WithdrawRing());
         sixth.setRight(new CloseBank());

@@ -3,6 +3,7 @@ package tasks;
 import methods.CraftMethod;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
@@ -38,7 +39,7 @@ public class FillPouches extends TreeTask {
             if (focused == null) continue;
             handler.setNotedFlag(pouchName, true);
             focused.interact("Fill");
-            Time.sleepUntil(() -> Inventory.getCount(CraftMethod.PURE_ESSENCE_ID) < essenceCount, 2000);
+            Time.sleepUntil(() -> Inventory.getCount(CraftMethod.PURE_ESSENCE_ID) < essenceCount, Random.high(800, 1200));
         }
         return super.execute();
     }
