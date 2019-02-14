@@ -25,11 +25,9 @@ public class TraverseObstacle extends TreeTask {
 
     @Override
     public int execute() {
-        final SceneObject obstacle = SceneObjects.getNearest(traversable -> handler.getNotedSetting(traversable.getName()));
-        if (obstacle == null) {
-            Log.info("We cannot find any suitable obstacle");
+        final SceneObject obstacle = SceneObjects.getNearest(traversable -> handler.getNotedSetting(traversable.getName()) && !traversable.containsAction("Enter"));
+        if (obstacle == null)
             return super.execute();
-        }
         obstacle.interact(AbyssObstacles.valueOf(obstacle.getName().toUpperCase()).getAction());
         Time.sleepUntil(() -> !obstacle.isPositionInteractable(), Random.high(800, obstacle.distance() > CLICK_DISTANCE ? 2000 : 1000));
         return super.execute();

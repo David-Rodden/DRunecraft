@@ -1,6 +1,7 @@
 package tasks;
 
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.EquipmentSlot;
 import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
@@ -23,7 +24,7 @@ public class TeleportToEdgeville extends TreeTask {
     public int execute() {
         EquipmentSlot.NECK.interact("Edgeville");
         final Position edgevillePosition = handler.getNotedPosition("edgeville");
-        Time.sleepUntil(() -> edgevillePosition != null && edgevillePosition.distance() < 40, 4000);
+        Time.sleepUntil(() -> edgevillePosition != null && edgevillePosition.distance() < 40, Random.high(2500, 2700));
         return super.execute();
     }
 
