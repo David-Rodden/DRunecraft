@@ -70,8 +70,8 @@ public class Abyss extends CraftMethod {
         ninth.setRight(new TeleportToAbyss(handler));
         eighth = seventh.setRight(new IsInInnerAbyss());
         ninth = eighth.setLeft(new IsHealthBelowThreshold());
-        ninth.setLeft(new TeleportToClanWars(handler));
         ninth.setLeft(new TraverseObstacle(handler));
+        ninth.setRight(new TeleportToClanWars(handler));
         ninth = eighth.setRight(new DoPouchesNeedRepairing(handler));
         ninth.setLeft(new EnterRift(handler));
         ninth.setRight(new RepairPouches());

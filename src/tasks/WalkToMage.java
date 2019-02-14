@@ -1,6 +1,5 @@
 package tasks;
 
-import org.rspeer.runetek.api.commons.BankLocation;
 import org.rspeer.runetek.api.component.InterfaceAddress;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.scene.Players;
