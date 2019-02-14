@@ -30,6 +30,7 @@ public class WithdrawPouches extends TreeTask {
             final String pouchName = pouch.toString();
             return handler.getNotedSetting(pouchName) && !Inventory.contains(pouchName);
         }).collect(Collectors.toSet());
+        if (pouches.isEmpty()) return -1;
         for (final Pouches pouch : pouches) {
             final String pouchName = pouch.toString();
             Bank.withdraw(pouchName, 1);

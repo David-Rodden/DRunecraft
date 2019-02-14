@@ -63,10 +63,14 @@ public class Abyss extends CraftMethod {
         TreeTask ninth = eighth.setLeft(new IsInFFA(handler));
         TreeTask tenth = ninth.setLeft(new IsNearClanWars(handler));
         tenth.setLeft(new TeleportToClanWars(handler));
-        tenth.setRight(new UseClanWarsPortal(handler));
+        TreeTask eleventh = tenth.setRight(new IsBeingHunted(handler));
+        eleventh.setLeft(new UseClanWarsPortal(handler));
+        eleventh.setRight(new HopToFreshWorld(handler));
         ninth.setRight(new TeleportToEdgeville(handler));
         ninth = eighth.setRight(new IsNearMage());
-        ninth.setLeft(new WalkToMage(handler));
+        tenth = ninth.setLeft(new IsBeingHunted(handler));
+        tenth.setLeft(new WalkToMage(handler));
+        tenth.setRight(new TeleportToClanWars(handler));
         ninth.setRight(new TeleportToAbyss(handler));
         eighth = seventh.setRight(new IsInInnerAbyss());
         ninth = eighth.setLeft(new IsHealthBelowThreshold());

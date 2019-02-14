@@ -1,5 +1,6 @@
 package tasks;
 
+import methods.CraftMethod;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Bank;
@@ -27,8 +28,9 @@ public class WithdrawPureEssence extends TreeTask {
             withdrawAttempts++;
             return withdrawAttempts == MAXIMUM_WITHDRAWAL_ATTEMPTS ? -1 : super.execute();
         }
+        final int essenceCount = Inventory.getCount(CraftMethod.PURE_ESSENCE_ID);
         Bank.withdraw("Pure essence", Inventory.getFreeSlots());
-        Time.sleepUntil(() -> Inventory.contains("Pure essence"), 4000);
+        Time.sleepUntil(() -> Inventory.getCount(CraftMethod.PURE_ESSENCE_ID) > essenceCount, 2000);
         withdrawAttempts = 0;
         return super.execute();
     }

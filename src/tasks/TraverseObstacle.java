@@ -3,8 +3,8 @@ package tasks;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
+import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import utils.AbyssObstacles;
@@ -29,7 +29,7 @@ public class TraverseObstacle extends TreeTask {
         if (obstacle == null)
             return super.execute();
         obstacle.interact(AbyssObstacles.valueOf(obstacle.getName().toUpperCase()).getAction());
-        Time.sleepUntil(() -> !obstacle.isPositionInteractable(), Random.high(800, obstacle.distance() > CLICK_DISTANCE ? 2000 : 1000));
+        Time.sleepUntil(() -> !obstacle.isPositionInteractable() || (!Players.getLocal().isMoving() && obstacle.distance() > CLICK_DISTANCE), Random.high(800, 1200));
         return super.execute();
     }
 
