@@ -35,4 +35,9 @@ public class WithdrawGlory extends TreeTask {
         withdrawAttempts = 0;
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Withdrawing charged glory";
+    }
 }

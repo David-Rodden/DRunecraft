@@ -29,4 +29,9 @@ public class EquipGlory extends TreeTask {
         }
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Equipping charged glory";
+    }
 }

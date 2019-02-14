@@ -38,4 +38,9 @@ public class WithdrawPouches extends TreeTask {
         }
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Withdrawing suitable pouches";
+    }
 }

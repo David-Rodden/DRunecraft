@@ -25,4 +25,9 @@ public class DepositBadGlory extends TreeTask {
         }
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Depositing unusable glory";
+    }
 }
