@@ -13,7 +13,7 @@ import task_structure.TreeScript;
 
 import java.awt.*;
 
-@ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.3)
+@ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.4)
 public class Runecraft extends TreeScript implements RenderListener, ItemTableListener {
     private RunecraftGUI runecraftGUI;
     private ProgressPaint progressPaint;
