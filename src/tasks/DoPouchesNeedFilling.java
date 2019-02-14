@@ -7,19 +7,15 @@ import task_structure.TreeTask;
 import utils.Pouches;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DoPouchesNeedFilling extends TreeTask {
     private static final int POUCH_BIT = 261;
     private final TreeScript handler;
-    private final Map<String, Boolean> pouches;
 
     public DoPouchesNeedFilling(final TreeScript handler) {
         super(false);
         this.handler = handler;
-        pouches = new HashMap<>();
     }
 
     @Override

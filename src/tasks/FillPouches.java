@@ -43,4 +43,9 @@ public class FillPouches extends TreeTask {
         }
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Filling empty pouches";
+    }
 }

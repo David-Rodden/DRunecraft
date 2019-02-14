@@ -8,11 +8,12 @@ import org.rspeer.runetek.event.types.RenderEvent;
 import org.rspeer.runetek.providers.RSItemDefinition;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
+import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 
 import java.awt.*;
 
-@ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.2)
+@ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.3)
 public class Runecraft extends TreeScript implements RenderListener, ItemTableListener {
     private RunecraftGUI runecraftGUI;
     private ProgressPaint progressPaint;
@@ -36,7 +37,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
 
     @Override
     public void onStop() {
-        if (progressPaint != null) System.out.println(progressPaint);
+        if (progressPaint != null) Log.info(progressPaint);
         super.onStop();
     }
 

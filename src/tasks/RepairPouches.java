@@ -25,4 +25,9 @@ public class RepairPouches extends TreeTask {
         }
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Repairing pouches";
+    }
 }

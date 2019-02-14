@@ -37,7 +37,13 @@ public class EmptyPouches extends TreeTask {
             handler.setNotedFlag(pouchName, false);
             focused.interact("Empty");
             Time.sleepUntil(() -> Inventory.getFreeSlots() < freeSlots, 2000);
+            Time.sleep(100, 300);
         }
         return super.execute();
+    }
+
+    @Override
+    public String toString() {
+        return "Emptying pouches";
     }
 }

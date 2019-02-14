@@ -21,6 +21,9 @@ public class Abyss extends CraftMethod {
         handler.addNotedPosition("inside altar", new Position(2400, 4837));
         for (final AbyssObstacles obstacle : AbyssObstacles.getMiningLoadout())
             handler.addNotedSetting(obstacle.toString());
+        /**
+         * auto adding all pouches, should be more selective in GUI
+         */
         handler.addNotedSetting("Small pouch");
         handler.addNotedSetting("Medium pouch");
         handler.addNotedSetting("Large pouch");
@@ -44,7 +47,9 @@ public class Abyss extends CraftMethod {
         TreeTask eighth = seventh.setLeft(new IsGloryInInventory());
         eighth.setLeft(new WithdrawGlory());
         eighth.setRight(new EquipGlory());
-        seventh.setRight(new WithdrawPureEssence());
+        eighth = seventh.setRight(new IsBadGloryInInventory());
+        eighth.setLeft(new WithdrawPureEssence());
+        eighth.setRight(new DepositBadGlory());
         fourth = third.setRight(new DoPouchesNeedFilling(handler));
         fourth.setLeft(new EmptyPouches(handler));
         fourth.setRight(new TeleportToClanWars(handler));
@@ -70,16 +75,24 @@ public class Abyss extends CraftMethod {
         ninth.setRight(new RepairPouches());
         fifth.setRight(new FillPouches(handler));
         fifth = fourth.setRight(new IsEnoughEssenceInInventory());
-        fifth.setLeft(new WithdrawPureEssence());
+        sixth = fifth.setLeft(new IsBadGloryInInventory());
+        sixth.setLeft(new WithdrawPureEssence());
+        sixth.setRight(new DepositBadGlory());
         fifth.setRight(new CloseBank());
         third.setRight(new CraftRunes(handler));
-        second = head.setRight(new IsBankOpen());
-        third = second.setLeft(new IsNearBank());
-        fourth = third.setLeft(new IsNearClanWars(handler));
-        fourth.setLeft(new TeleportToClanWars(handler));
-        fourth.setRight(new WalkToBank(BankLocation.CLAN_WARS));
-        third.setRight(new OpenBank());
-        second.setRight(new DepositRunes());
+        second = head.setRight(new IsInAltar(handler));
+        third = second.setLeft(new IsBankOpen());
+        fourth = third.setLeft(new IsNearBank());
+        fifth = fourth.setLeft(new IsNearClanWars(handler));
+        fifth.setLeft(new TeleportToClanWars(handler));
+        fifth.setRight(new WalkToBank(BankLocation.CLAN_WARS));
+        fourth.setRight(new OpenBank());
+        third.setRight(new DepositRunes());
+        third = second.setRight(new HasPureEssence());
+        fourth = third.setLeft(new AreAllPouchesEmpty(handler));
+        fourth.setLeft(new EmptyPouches(handler));
+        fourth.setRight(new TeleportToClanWars(handler));
+        third.setRight(new CraftRunes(handler));
         setHead(head);
     }
 }

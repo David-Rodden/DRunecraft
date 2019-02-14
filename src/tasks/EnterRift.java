@@ -27,8 +27,13 @@ public class EnterRift extends TreeTask {
         final Position centerAbyss = handler.getNotedPosition("center abyss");
         if (rift != null && centerAbyss != null) {
             rift.interact("Exit-through");
-            Time.sleepUntil(() -> centerAbyss.distance() > 100, Random.high(2000, 3000));
+            Time.sleepUntil(() -> centerAbyss.distance() > 100, Random.high(800, 1500));
         }
         return super.execute();
+    }
+
+    @Override
+    public String toString() {
+        return "Entering proper rift";
     }
 }

@@ -23,11 +23,17 @@ public class UseClanWarsPortal extends TreeTask {
     @Override
     public int execute() {
         final SceneObject portal = SceneObjects.getNearest("Free-for-all portal");
-        final Position freeForAllPosition = handler.getNotedPosition("inner ffa");
+        final Position freeForAllPosition = handler.getNotedPosition("outer ffa");
         if (portal != null && freeForAllPosition != null) {
             portal.interact("Enter");
-            Time.sleepUntil(() -> freeForAllPosition.distance() < 10, 3000);
+            Time.sleepUntil(() -> freeForAllPosition.distance() > 10, 3000);
+            Time.sleep(1000, 1200);
         }
         return super.execute();
+    }
+
+    @Override
+    public String toString() {
+        return "Replenishing through Clan Wars";
     }
 }

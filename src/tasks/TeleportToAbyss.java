@@ -26,7 +26,7 @@ public class TeleportToAbyss extends TreeTask {
         if (zamorakMage == null) return super.execute();
         zamorakMage.interact("Teleport");
         final Position centerAbyssPosition = handler.getNotedPosition("center abyss");
-        Time.sleepUntil(() -> centerAbyssPosition != null && centerAbyssPosition.distance() < 50, 6000);
+        Time.sleepUntil(() -> centerAbyssPosition != null && centerAbyssPosition.distance() < 100, 3000);
         return super.execute();
     }
 
