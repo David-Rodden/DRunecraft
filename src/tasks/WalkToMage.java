@@ -9,7 +9,7 @@ import task_structure.TreeScript;
 import java.util.Arrays;
 
 public class WalkToMage extends WalkToSpecified {
-    private final static int WILDERNESS_ENTRANCE_Y = 3524, MAXIMUM_WILDERNESS = 6;
+    private final static int WILDERNESS_ENTRANCE_Y = 3524, MAXIMUM_WILDERNESS = 6, EQUIPMENT_OFFSET = 512;
     private final TreeScript handler;
     private final String characterName;
     private final int characterLevel;
@@ -25,9 +25,13 @@ public class WalkToMage extends WalkToSpecified {
     @Override
     public int execute() {
         final Player[] threats = Players.getLoaded(player -> {
-            for (final int equipmentId : player.getAppearance().getEquipmentIds())
-                if (Definitions.getItem(equipmentId).getName().matches(".*\\s(pickaxe|axe)")) return false;
-            return !player.getName().equals(characterName) && player.getPosition().getY() > WILDERNESS_ENTRANCE_Y && Math.abs(characterLevel - player.getCombatLevel()) <= MAXIMUM_WILDERNESS;
+            if (player.getName().equals(characterName)) return false;
+            for (final int equipmentId : player.getAppearance().getEquipmentIds()) {
+                if (equipmentId <= EQUIPMENT_OFFSET) continue;
+                if (Definitions.getItem(equipmentId - EQUIPMENT_OFFSET).getName().matches(".*\\s(pickaxe|axe)"))
+                    return false;
+            }
+            return player.getPosition().getY() > WILDERNESS_ENTRANCE_Y && Math.abs(characterLevel - player.getCombatLevel()) <= MAXIMUM_WILDERNESS;
         });
         if (threats == null || threats.length == 0) return super.execute();
         Log.info("We're being hunted by " + Arrays.stream(threats).findAny().get().getName());
