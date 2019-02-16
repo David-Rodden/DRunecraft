@@ -6,11 +6,11 @@ import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import tasks.*;
-import utils.AbyssObstacles;
+import utils.RuneTypes;
 
 public class Abyss extends CraftMethod {
-    public Abyss(final TreeScript handler) {
-        super(handler, CraftMethods.ABYSS.getId());
+    public Abyss(final TreeScript handler, final RuneTypes runeType) {
+        super(handler, runeType.getId());
         final int miniquestCompleted = Varps.get(491);  //1073799168?
         handler.addNotedPosition("edgeville", new Position(3088, 3502));
         handler.addNotedPosition("mage", new Position(3107, 3557));
@@ -18,17 +18,8 @@ public class Abyss extends CraftMethod {
         handler.addNotedPosition("outer ffa", new Position(3352, 3164));
         handler.addNotedPosition("inner ffa", new Position(3327, 4751));
         handler.addNotedPosition("clan wars", new Position(3369, 3170));
-        handler.addNotedPosition("inside altar", new Position(2400, 4837));
-        for (final AbyssObstacles obstacle : AbyssObstacles.getMiningLoadout())
-            handler.addNotedSetting(obstacle.toString());
-        /**
-         * auto adding all pouches, should be more selective in GUI
-         */
-        handler.addNotedSetting("Small pouch");
-        handler.addNotedSetting("Medium pouch");
-        handler.addNotedSetting("Large pouch");
-        handler.addNotedSetting("Giant pouch");
-        final TreeTask head = new HasRunes("Nature");
+        handler.addNotedPosition("inside altar", runeType.getAltarPosition());
+        final TreeTask head = new HasRunes(runeType.toString());
         TreeTask second = head.setLeft(new HasPureEssence());
         TreeTask third = second.setLeft(new IsInAltar(handler));
         TreeTask fourth = third.setLeft(new IsBankOpen());
@@ -77,7 +68,7 @@ public class Abyss extends CraftMethod {
         eighth.setLeft(new TraverseObstacle(handler));
         eighth.setRight(new TeleportToClanWars(handler));
         eighth = seventh.setRight(new DoPouchesNeedRepairing(handler));
-        eighth.setLeft(new EnterRift(handler));
+        eighth.setLeft(new EnterRift(handler, runeType.toString()));
         eighth.setRight(new RepairPouches());
         fifth.setRight(new FillPouches(handler));
         fifth = fourth.setRight(new IsBadGloryInInventory());

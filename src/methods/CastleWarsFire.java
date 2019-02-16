@@ -5,14 +5,15 @@ import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import tasks.*;
+import utils.RuneTypes;
 
 public class CastleWarsFire extends CraftMethod {
     public CastleWarsFire(final TreeScript handler) {
-        super(handler, CraftMethods.CASTLE_WARS_FIRE.getId());
+        super(handler, RuneTypes.FIRE.getId());
         handler.addNotedPosition("castle wars", new Position(2440, 3089));
         handler.addNotedPosition("duel arena", new Position(3312, 3235));
         handler.addNotedPosition("outside altar", new Position(3312, 3253));
-        handler.addNotedPosition("inside altar", new Position(2576, 4848));
+        handler.addNotedPosition("inside altar", RuneTypes.FIRE.getAltarPosition());
         final TreeTask head = new HasRunes("Fire");
         TreeTask second = head.setLeft(new HasPureEssence());
         TreeTask third = second.setLeft(new IsBankOpen());

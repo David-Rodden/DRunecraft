@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 
 public class ProgressPaint {
     private final Font progressFont;
@@ -28,7 +29,8 @@ public class ProgressPaint {
         runeCost = method.getRunePrice();
         essenceCost = method.getEssencePrice();
         startExperience = Skills.getExperience(Skill.RUNECRAFTING);
-        progressFont = new Font("High Tower Text", Font.PLAIN, 20);
+        progressFont = Arrays.asList(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames()).contains("High Tower Text") ?
+                new Font("High Tower Text", Font.PLAIN, 20) : new Font("Garamond", Font.BOLD, 20);
         timeColor = new Color(201, 201, 201);
         runeColor = new Color(97, 199, 201);
         xpColor = new Color(221, 130, 224);

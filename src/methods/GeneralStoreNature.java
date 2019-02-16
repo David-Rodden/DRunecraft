@@ -4,14 +4,15 @@ import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import tasks.*;
+import utils.RuneTypes;
 
 public class GeneralStoreNature extends CraftMethod {
 
     public GeneralStoreNature(final TreeScript handler) {
-        super(handler, CraftMethods.GENERAL_STORE_NATURE.getId());
+        super(handler, RuneTypes.NATURE.getId());
         handler.addNotedPosition("general store", new Position(2768, 3120));
         handler.addNotedPosition("outside altar", new Position(2867, 3020));
-        handler.addNotedPosition("inside altar", new Position(2400, 4837));
+        handler.addNotedPosition("inside altar", RuneTypes.NATURE.getAltarPosition());
         final TreeTask head = new HasEnoughEssence();
         TreeTask second = head.setLeft(new IsTradingJiminua());
         TreeTask third = second.setLeft(new IsNearJiminua(handler));

@@ -1,19 +1,14 @@
 package methods;
 
 public enum CraftMethods {
-    SIMPLE_AIR(SimpleAir.class, 556), SIMPLE_WATER(SimpleWater.class, 555), SIMPLE_EARTH(SimpleEarth.class, 557), SIMPLE_FIRE(SimpleFire.class, 554), CASTLE_WARS_FIRE(CastleWarsFire.class, 554), SIMPLE_BODY(SimpleBody.class, 559), GENERAL_STORE_NATURE(GeneralStoreNature.class, 561), ABYSS(Abyss.class, 561);
+    SIMPLE_AIR(SimpleAir.class), SIMPLE_WATER(SimpleWater.class), SIMPLE_EARTH(SimpleEarth.class), SIMPLE_FIRE(SimpleFire.class), CASTLE_WARS_FIRE(CastleWarsFire.class), SIMPLE_BODY(SimpleBody.class), GENERAL_STORE_NATURE(GeneralStoreNature.class), ABYSS(Abyss.class);
 
     private final Class method;
-    private final int id;
 
-    CraftMethods(final Class method, final int id) {
+    CraftMethods(final Class method) {
         this.method = method;
-        this.id = id;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public Class getMethod() {
         return method;

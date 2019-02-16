@@ -16,12 +16,16 @@ public enum AbyssObstacles {
         return action;
     }
 
-    public static AbyssObstacles[] getMiningLoadout() {
+    static AbyssObstacles[] getMiningLoadout() {
         return new AbyssObstacles[]{ROCK, EYES, GAP, PASSAGE};
     }
 
-    public static AbyssObstacles[] getWoodcuttingLoadout() {
+    static AbyssObstacles[] getWoodcuttingLoadout() {
         return new AbyssObstacles[]{TENDRILS, EYES, GAP, PASSAGE};
+    }
+
+    static AbyssObstacles[] getPeacefulLoadout() {
+        return new AbyssObstacles[]{EYES, GAP, PASSAGE};
     }
 
     @Override

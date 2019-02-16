@@ -10,10 +10,12 @@ import task_structure.TreeTask;
 
 public class EnterRift extends TreeTask {
     private final TreeScript handler;
+    private final String runeType;
 
-    public EnterRift(final TreeScript handler) {
+    public EnterRift(final TreeScript handler, final String runeType) {
         super(true);
         this.handler = handler;
+        this.runeType = runeType;
     }
 
     @Override
@@ -23,7 +25,7 @@ public class EnterRift extends TreeTask {
 
     @Override
     public int execute() {
-        final SceneObject rift = SceneObjects.getNearest("Nature rift");
+        final SceneObject rift = SceneObjects.getNearest(runeType + " rift");
         final Position centerAbyss = handler.getNotedPosition("center abyss");
         if (rift != null && centerAbyss != null) {
             rift.interact("Exit-through");

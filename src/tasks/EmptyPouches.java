@@ -36,7 +36,7 @@ public class EmptyPouches extends TreeTask {
             if (focused == null) continue;
             handler.setNotedFlag(pouchName, false);
             focused.interact("Empty");
-            Time.sleepUntil(() -> Inventory.getFreeSlots() < freeSlots, 2000);
+            Time.sleepUntil(() -> Inventory.getFreeSlots() < freeSlots, 1000);
         }
         return super.execute();
     }
