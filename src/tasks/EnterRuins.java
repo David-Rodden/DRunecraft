@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import task_structure.TreeScript;
@@ -26,7 +27,7 @@ public class EnterRuins extends TreeTask {
         if (ruins == null) return super.execute();
         ruins.interact("Enter");
         final Position altarPosition = handler.getNotedPosition("inside altar");
-        Time.sleepUntil(() -> altarPosition != null && altarPosition.distance() < 10, 4000);
+        Time.sleepUntil(() -> altarPosition != null && altarPosition.distance() < 20, Random.high(2000, 2500));
         return super.execute();
     }
 

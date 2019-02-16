@@ -23,4 +23,9 @@ public class DepositPureEssence extends TreeTask {
         Time.sleepUntil(() -> Inventory.getCount(CraftMethod.PURE_ESSENCE_ID) < essenceCount, 1500);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Depositing pure essence";
+    }
 }
