@@ -1,11 +1,7 @@
 package tasks;
 
-import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
-import org.rspeer.runetek.api.commons.predicate.Predicates;
 import org.rspeer.runetek.api.component.Bank;
-import org.rspeer.runetek.api.movement.position.Position;
-import org.rspeer.runetek.api.scene.SceneObjects;
 import task_structure.TreeTask;
 
 public class OpenBank extends TreeTask {

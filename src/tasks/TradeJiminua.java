@@ -1,7 +1,6 @@
 package tasks;
 
 import org.rspeer.runetek.adapter.scene.Npc;
-import org.rspeer.runetek.api.Definitions;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Shop;
 import org.rspeer.runetek.api.scene.Npcs;

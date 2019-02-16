@@ -3,7 +3,6 @@ package tasks;
 import org.rspeer.runetek.api.Worlds;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.WorldHopper;
-import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 
