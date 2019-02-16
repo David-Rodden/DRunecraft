@@ -32,4 +32,9 @@ public class WithdrawMindTabs extends TreeTask {
         withdrawAttempts = 0;
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Withdrawing mind teleport tabs";
+    }
 }
