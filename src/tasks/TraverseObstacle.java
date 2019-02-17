@@ -32,7 +32,7 @@ public class TraverseObstacle extends TreeTask {
         if (obstacle == null)
             return super.execute();
         obstacle.interact(AbyssObstacles.valueOf(obstacle.getName().toUpperCase()).getAction());
-        Time.sleepUntil(() -> !obstacle.isPositionInteractable() || (!Players.getLocal().isMoving() && obstacle.distance() > CLICK_DISTANCE), Random.high(800, 1200));
+        Time.sleepUntil(() -> !obstacle.isPositionInteractable() || (!Players.getLocal().isMoving() && obstacle.distance() > CLICK_DISTANCE), Random.high(400, 700));
         return super.execute();
     }
 

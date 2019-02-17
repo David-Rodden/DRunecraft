@@ -3,6 +3,7 @@ package tasks;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
+import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import task_structure.TreeScript;
@@ -29,7 +30,7 @@ public class EnterRift extends TreeTask {
         final Position centerAbyss = handler.getNotedPosition("center abyss");
         if (rift != null && centerAbyss != null) {
             rift.interact("Exit-through");
-            Time.sleepUntil(() -> centerAbyss.distance() > 100, Random.high(800, 1500));
+            Time.sleepUntil(() -> centerAbyss.distance() > 100, Movement.isDestinationSet() ? Random.high(1200, 1500) : Random.high(300, 500));
         }
         return super.execute();
     }

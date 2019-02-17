@@ -61,15 +61,15 @@ public class ProgressPaint {
         graphics.setColor(runeColor);
         graphics.drawString(String.valueOf(runes), 80, 430);
         final int hourlyRunes = (int) runtime.getHourlyRate(runes);
-        graphics.drawString(String.format("%s ph", hourlyRunes >= 1000 ? hourlyRunes / 1000 + "K" : hourlyRunes), 80, 450);
+        graphics.drawString(String.format("%s ph", hourlyRunes >= 10000 ? hourlyRunes / 1000 + "K" : hourlyRunes), 80, 450);
         final int gainedExperience = Skills.getExperience(Skill.RUNECRAFTING) - startExperience, hourlyExperience = (int) runtime.getHourlyRate(gainedExperience);
         graphics.setColor(xpColor);
         graphics.drawString(String.valueOf(gainedExperience), 240, 430);
-        graphics.drawString(String.format("%s ph", hourlyExperience >= 1000 ? hourlyExperience / 1000 + "K" : hourlyExperience), 240, 450);
+        graphics.drawString(String.format("%s ph", hourlyExperience >= 10000 ? hourlyExperience / 1000 + "K" : hourlyExperience), 240, 450);
         final int hourlyEssence = (int) runtime.getHourlyRate(essence), hourlyProfit = hourlyRunes * runeCost - hourlyEssence * essenceCost;
         graphics.setColor(gpColor);
         graphics.drawString(String.valueOf(runes * runeCost - essence * essenceCost), 400, 430);
-        graphics.drawString(String.format("%s ph", hourlyProfit >= 1000 ? hourlyProfit / 1000 + "K" : hourlyProfit), 400, 450);
+        graphics.drawString(String.format("%s ph", hourlyProfit >= 10000 ? hourlyProfit / 1000 + "K" : hourlyProfit), 400, 450);
     }
 
     public void displayPaint(final Graphics graphics, final String description) {
