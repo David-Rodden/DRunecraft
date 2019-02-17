@@ -6,6 +6,7 @@ import org.rspeer.runetek.api.ClientSupplier;
 import task_structure.TreeScript;
 import utils.AbyssLoadouts;
 import utils.AbyssObstacles;
+import utils.FoodTypes;
 import utils.RuneTypes;
 
 import javax.swing.*;
@@ -27,6 +28,10 @@ public class RunecraftGUI extends JFrame {
     private JComboBox<AbyssLoadouts> traversalChoice;
     private JCheckBox useOfStaminaPotionsCheckBox;
     private JPanel staminaPanel;
+    private JCheckBox useOfClanWarsCheckBox;
+    private JComboBox<FoodTypes> foodChoice;
+    private JCheckBox useOfStaminaPotionsAbyssCheckBox;
+    private JPanel selfHealPanel;
     private Class<?> craftClass;
     private boolean hasBeenSet;
 
@@ -42,6 +47,8 @@ public class RunecraftGUI extends JFrame {
             abyssRuneSpecifier.addItem(runeType);
         for (final AbyssLoadouts loadout : AbyssLoadouts.values())
             traversalChoice.addItem(loadout);
+        for (final FoodTypes foodType : FoodTypes.values())
+            foodChoice.addItem(foodType);
         abyssPanel.setVisible(false);
         methodChoice.addActionListener(e -> {
             final boolean isAbyssVisible = Objects.requireNonNull(methodChoice.getSelectedItem()).equals(CraftMethods.ABYSS);
@@ -49,6 +56,7 @@ public class RunecraftGUI extends JFrame {
             abyssPanel.setVisible(isAbyssVisible);
             pack();
         });
+        useOfClanWarsCheckBox.addActionListener(e -> selfHealPanel.setVisible(!useOfClanWarsCheckBox.isSelected()));
         startButton.addActionListener(e -> {
             final CraftMethods selected = (CraftMethods) methodChoice.getSelectedItem();
             if (selected == null) return;
@@ -69,8 +77,10 @@ public class RunecraftGUI extends JFrame {
     }
 
     public CraftMethod getMethod(final TreeScript handler) {
-        if (useOfStaminaPotionsCheckBox.isSelected()) handler.addNotedSetting("stamina");
-        if (abyssPanel.isVisible()) {
+        final boolean abyssVisible = abyssPanel.isVisible(), clanWarsSelected = useOfClanWarsCheckBox.isSelected();
+        if ((!abyssVisible && useOfStaminaPotionsCheckBox.isSelected()) || (abyssVisible && !clanWarsSelected && useOfStaminaPotionsAbyssCheckBox.isSelected()))
+            handler.addNotedSetting("stamina");
+        if (abyssVisible) {
             if (smallPouchCheckBox.isSelected()) handler.addNotedSetting("Small pouch");
             if (mediumPouchCheckBox.isSelected()) handler.addNotedSetting("Medium pouch");
             if (largePouchCheckBox.isSelected()) handler.addNotedSetting("Large pouch");
@@ -79,7 +89,7 @@ public class RunecraftGUI extends JFrame {
                 handler.addNotedSetting(obstacle.toString());
         }
         try {
-            return (CraftMethod) (abyssPanel.isVisible() ? craftClass.getDeclaredConstructor(TreeScript.class, RuneTypes.class).newInstance(handler, (RuneTypes) abyssRuneSpecifier.getSelectedItem()) : craftClass.getDeclaredConstructor(TreeScript.class).newInstance(handler));
+            return (CraftMethod) (abyssVisible ? clanWarsSelected ? craftClass.getDeclaredConstructor(TreeScript.class, RuneTypes.class).newInstance(handler, (RuneTypes) abyssRuneSpecifier.getSelectedItem()) : craftClass.getConstructor(TreeScript.class, RuneTypes.class, FoodTypes.class).newInstance(handler, (RuneTypes) abyssRuneSpecifier.getSelectedItem(), (FoodTypes) foodChoice.getSelectedItem()) : craftClass.getDeclaredConstructor(TreeScript.class).newInstance(handler));
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }

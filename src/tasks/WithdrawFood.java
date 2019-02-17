@@ -2,10 +2,11 @@ package tasks;
 
 import java.util.regex.Pattern;
 
-public class WithdrawGlory extends Withdrawal {
+public class WithdrawFood extends Withdrawal {
 
-    public WithdrawGlory() {
-        super(Pattern.compile("Amulet of glory\\(\\d\\)"));
+
+    public WithdrawFood(final String foodType) {
+        super(Pattern.compile(foodType));
     }
 
     @Override
@@ -15,6 +16,6 @@ public class WithdrawGlory extends Withdrawal {
 
     @Override
     public String toString() {
-        return "Withdrawing charged glory";
+        return "Withdrawing food";
     }
 }
