@@ -25,6 +25,8 @@ public class RunecraftGUI extends JFrame {
     private JCheckBox giantPouchCheckBox;
     private JPanel traversalSelection;
     private JComboBox<AbyssLoadouts> traversalChoice;
+    private JCheckBox useOfStaminaPotionsCheckBox;
+    private JPanel staminaPanel;
     private Class<?> craftClass;
     private boolean hasBeenSet;
 
@@ -42,7 +44,9 @@ public class RunecraftGUI extends JFrame {
             traversalChoice.addItem(loadout);
         abyssPanel.setVisible(false);
         methodChoice.addActionListener(e -> {
-            abyssPanel.setVisible(Objects.requireNonNull(methodChoice.getSelectedItem()).equals(CraftMethods.ABYSS));
+            final boolean isAbyssVisible = Objects.requireNonNull(methodChoice.getSelectedItem()).equals(CraftMethods.ABYSS);
+            staminaPanel.setVisible(!isAbyssVisible);
+            abyssPanel.setVisible(isAbyssVisible);
             pack();
         });
         startButton.addActionListener(e -> {
@@ -65,6 +69,7 @@ public class RunecraftGUI extends JFrame {
     }
 
     public CraftMethod getMethod(final TreeScript handler) {
+        if (useOfStaminaPotionsCheckBox.isSelected()) handler.addNotedSetting("stamina");
         if (abyssPanel.isVisible()) {
             if (smallPouchCheckBox.isSelected()) handler.addNotedSetting("Small pouch");
             if (mediumPouchCheckBox.isSelected()) handler.addNotedSetting("Medium pouch");

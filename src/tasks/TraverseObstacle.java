@@ -27,7 +27,7 @@ public class TraverseObstacle extends TreeTask {
     public int execute() {
         final SceneObject obstacle = SceneObjects.getNearest(traversable -> {
             final String name = traversable.getName();
-            return handler.getNotedSetting(name) && traversable.containsAction(AbyssObstacles.valueOf(name).getAction());
+            return handler.getNotedSetting(name) && traversable.containsAction(AbyssObstacles.valueOf(name.toUpperCase()).getAction());
         });
         if (obstacle == null)
             return super.execute();
