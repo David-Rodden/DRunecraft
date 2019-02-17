@@ -36,4 +36,9 @@ public class WalkToJiminua extends TreeTask {
         Time.sleepUntil(() -> !Movement.isDestinationSet() || Movement.getDestinationDistance() < 5, 5000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Walking to Jiminua";
+    }
 }

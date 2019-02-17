@@ -20,4 +20,9 @@ public class CloseJiminuaShop extends TreeTask {
         Time.sleepUntil(() -> !Shop.isOpen(), 2000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Closing Jiminua's shop";
+    }
 }

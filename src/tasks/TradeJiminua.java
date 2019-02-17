@@ -24,4 +24,9 @@ public class TradeJiminua extends TreeTask {
         Time.sleepUntil(Shop::isOpen, 5000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Trading Jiminua";
+    }
 }

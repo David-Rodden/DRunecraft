@@ -24,4 +24,9 @@ public class DrinkWine extends TreeTask {
         }
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Drinking wine to replenish health";
+    }
 }

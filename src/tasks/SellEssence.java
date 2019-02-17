@@ -26,4 +26,9 @@ public class SellEssence extends TreeTask {
         Time.sleepUntil(() -> Shop.getQuantity("Pure essence") > inStock, 4000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Selling essence";
+    }
 }

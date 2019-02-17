@@ -22,4 +22,9 @@ public class SellWine extends TreeTask {
         Time.sleepUntil(() -> Shop.contains("Wine"), 4000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Selling wine";
+    }
 }

@@ -27,4 +27,9 @@ public class EatFood extends TreeTask {
         }
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Eating " + foodType + " to replenish health";
+    }
 }
