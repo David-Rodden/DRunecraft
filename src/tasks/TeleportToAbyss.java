@@ -36,8 +36,8 @@ public class TeleportToAbyss extends WildernessWalkToSpecified {
         if (zamorakMage == null) return super.execute();
         zamorakMage.interact("Teleport");
         final Position centerAbyssPosition = handler.getNotedPosition("center abyss");
-        Time.sleepUntil(() -> centerAbyssPosition != null && centerAbyssPosition.distance() < 100, 3000);
-        return super.execute();
+        Time.sleepUntil(() -> centerAbyssPosition != null && centerAbyssPosition.distance() < 120, 2500);
+        return 100;
     }
 
     @Override

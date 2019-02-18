@@ -9,8 +9,12 @@ public class HasStaminaPotionInInventory extends TreeTask {
     private final Pattern staminaPattern;
 
     public HasStaminaPotionInInventory() {
+        this(false);
+    }
+
+    public HasStaminaPotionInInventory(final boolean includingVial) {
         super(false);
-        staminaPattern = Pattern.compile("(Stamina potion\\(\\d\\)|Vial)");
+        staminaPattern = Pattern.compile(includingVial ? "(Stamina potion\\(\\d\\)|Vial)" : "Stamina potion\\(\\d\\)");
     }
 
     @Override
