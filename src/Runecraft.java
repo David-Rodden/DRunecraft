@@ -27,7 +27,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
     @Override
     public int loop() {
         if (!runecraftGUI.hasBeenSet()) return runecraftGUI.isHidden() ? -1 : 2000;
-        if (!isHeadSet()) {
+        if (!hasHeadBeenSet()) {
             final CraftMethod craftMethod = runecraftGUI.getMethod(this);
             setHead(craftMethod.getHead());
             progressPaint = new ProgressPaint(craftMethod);
