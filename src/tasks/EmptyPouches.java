@@ -1,5 +1,6 @@
 package tasks;
 
+import methods.CraftMethod;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
@@ -28,16 +29,18 @@ public class EmptyPouches extends TreeTask {
     @Override
     public int execute() {
         final Stream<Pouches> pouches = Arrays.stream(Pouches.values()).filter(pouch -> handler.getNotedSetting(pouch.toString())).sorted(Comparator.comparing(Pouches::getBitSize).reversed());
+        int freeSlots = Inventory.getFreeSlots();
         for (final Pouches pouch : pouches.collect(Collectors.toSet())) {
             final String pouchName = pouch.toString();
-            final int freeSlots = Inventory.getFreeSlots();
-            if (!handler.getNotedFlag(pouchName) || freeSlots < pouch.getStorageSize()) continue;
+            final int storageSize = pouch.getStorageSize();
+            if (!handler.getNotedFlag(pouchName) || freeSlots < storageSize) continue;
             final Item focused = Inventory.getFirst(pouchName);
             if (focused == null) continue;
             handler.setNotedFlag(pouchName, false);
             focused.interact("Empty");
-            Time.sleepUntil(() -> Inventory.getFreeSlots() < freeSlots, 1000);
+            freeSlots -= storageSize;
         }
+        Time.sleepUntil(() -> Inventory.contains(CraftMethod.PURE_ESSENCE_ID), 1500);
         return super.execute();
     }
 

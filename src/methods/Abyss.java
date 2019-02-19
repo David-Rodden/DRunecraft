@@ -176,7 +176,7 @@ public class Abyss extends CraftMethod {
         ninth.setRight(new WithdrawPureEssence());
         eighth.setRight(new DepositPureEssence());
         seventh.setRight(new CloseBank());
-        seventh = sixth.setRight(new HasNecessaryItems(handler));
+        seventh = sixth.setRight(new IsFullOfEssence());
         eighth = seventh.setLeft(new IsFoodInInventory(foodName));
         eighth.setLeft(new WithdrawFood(foodName));
         eighth.setRight(new EatFood(foodName));

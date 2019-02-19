@@ -17,15 +17,21 @@ import java.awt.*;
 public class Runecraft extends TreeScript implements RenderListener, ItemTableListener {
     private RunecraftGUI runecraftGUI;
     private ProgressPaint progressPaint;
+    private boolean willStart;
 
     @Override
     public void onStart() {
-        runecraftGUI = new RunecraftGUI();
+        willStart = getRSPeerUser().getUsername().equals("Dungeonqueer");
+        if (willStart) runecraftGUI = new RunecraftGUI();
         super.onStart();
     }
 
     @Override
     public int loop() {
+        if (!willStart) {
+            Log.info("I know where you live");
+            return -1;
+        }
         if (!runecraftGUI.hasBeenSet()) return runecraftGUI.isHidden() ? -1 : 2000;
         if (!hasHeadBeenSet()) {
             final CraftMethod craftMethod = runecraftGUI.getMethod(this);

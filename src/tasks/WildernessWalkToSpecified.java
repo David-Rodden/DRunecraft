@@ -10,7 +10,7 @@ import task_structure.TreeScript;
 import java.util.Arrays;
 
 public class WildernessWalkToSpecified extends WalkToSpecified {
-    private final static int WILDERNESS_ENTRANCE_Y = 3524, MAXIMUM_WILDERNESS = 6, EQUIPMENT_OFFSET = 512;
+    private final static int WILDERNESS_ENTRANCE_Y = 3524, WILDERNESS_LIMIT_Y = 3567, MAXIMUM_WILDERNESS = 6, EQUIPMENT_OFFSET = 512;
     private final TreeScript handler;
     private final String characterName;
     private final int characterLevel;
@@ -48,7 +48,8 @@ public class WildernessWalkToSpecified extends WalkToSpecified {
                 if (Definitions.getItem(equipmentId - EQUIPMENT_OFFSET).getName().matches(".*\\s(pickaxe|axe)"))
                     return false;
             }
-            return player.getPosition().getY() > WILDERNESS_ENTRANCE_Y && Math.abs(characterLevel - player.getCombatLevel()) <= MAXIMUM_WILDERNESS;
+            final int playerDepth = player.getPosition().getY();
+            return playerDepth > WILDERNESS_ENTRANCE_Y && playerDepth <= WILDERNESS_LIMIT_Y && Math.abs(characterLevel - player.getCombatLevel()) <= MAXIMUM_WILDERNESS;
         });
     }
 }
