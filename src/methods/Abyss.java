@@ -154,7 +154,7 @@ public class Abyss extends CraftMethod {
         tenth.setRight(new WalkToMage(handler));
         ninth.setRight(new OpenBank());
         eighth.setRight(new TeleportToAbyss(handler));
-        eighth = seventh.setRight(new IsNearMage());
+        eighth = seventh.setRight(new IsInWilderness());
         eighth.setLeft(new HopToFreshWorld(handler));
         eighth.setRight(new TeleportToEdgeville(handler));
         seventh = sixth.setRight(new IsInInnerAbyss());

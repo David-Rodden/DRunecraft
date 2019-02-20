@@ -7,8 +7,8 @@ import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import task_structure.TreeTask;
 
-public class VenerateAltar extends TreeTask {
-    public VenerateAltar() {
+public class BindBloodAltar extends TreeTask {
+    public BindBloodAltar() {
         super(true);
     }
 
@@ -19,10 +19,11 @@ public class VenerateAltar extends TreeTask {
 
     @Override
     public int execute() {
-        final SceneObject darkAltar = SceneObjects.getNearest("Dark altar");
-        if (darkAltar == null) return super.execute();
-        darkAltar.interact("Venerate");
-        Time.sleepUntil(() -> Inventory.contains("Dark essence block") && !Players.getLocal().isAnimating(), 2000);
+        final SceneObject altar = SceneObjects.getNearest("Blood Altar");
+        if (altar == null) return super.execute();
+        altar.interact("Bind");
+        Time.sleepUntil(() -> !Inventory.contains("Dark essence block") && !Players.getLocal().isAnimating(), 5000);
+        Time.sleep(750, 800);
         return super.execute();
     }
 }

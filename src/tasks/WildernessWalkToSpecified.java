@@ -10,7 +10,8 @@ import task_structure.TreeScript;
 import java.util.Arrays;
 
 public class WildernessWalkToSpecified extends WalkToSpecified {
-    private final static int WILDERNESS_ENTRANCE_Y = 3524, WILDERNESS_LIMIT_Y = 3567, MAXIMUM_WILDERNESS = 6, EQUIPMENT_OFFSET = 512;
+    private final static int WILDERNESS_LIMIT_Y = 3567, MAXIMUM_WILDERNESS = 6, EQUIPMENT_OFFSET = 512;
+    final static int WILDERNESS_ENTRANCE_Y = 3524;
     private final TreeScript handler;
     private final String characterName;
     private final int characterLevel;

@@ -5,23 +5,25 @@ import org.rspeer.runetek.api.component.tab.Skills;
 import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
+import utils.Pathing;
 
 
 public class ShouldUseShortcut extends TreeTask {
     private final TreeScript handler;
+    private final boolean isHeadingToEssence;
 
-    public ShouldUseShortcut(final TreeScript handler) {
+    public ShouldUseShortcut(final TreeScript handler, final boolean isHeadingToEssence) {
         super(false);
         this.handler = handler;
+        this.isHeadingToEssence = isHeadingToEssence;
     }
 
     @Override
     public boolean validate() {
         final int agilityLevel = Skills.getLevel(Skill.AGILITY);
-        Position outer = handler.getNotedPosition("high agility outer"), inner = handler.getNotedPosition("high agility inner");
-        if (agilityLevel >= 69 && inner != null && outer != null && inner.distance() < outer.distance()) return true;
-        outer = handler.getNotedPosition("low agility outer");
-        inner = handler.getNotedPosition("low agility inner");
-        return agilityLevel >= 52 && inner != null && outer != null && inner.distance() < outer.distance();
+        final Position destination = isHeadingToEssence ? handler.getNotedPosition("center essence") : handler.getNotedPosition("dark altar");
+        if (destination == null) return false;
+        final int distanceToDestination = Pathing.getTrueDistance(destination);
+        return distanceToDestination >= 150 && agilityLevel >= 52;
     }
 }
