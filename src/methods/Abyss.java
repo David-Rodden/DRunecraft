@@ -11,7 +11,7 @@ import utils.RuneTypes;
 
 public class Abyss extends CraftMethod {
     public Abyss(final TreeScript handler, final RuneTypes runeType) {
-        super(handler, runeType.getId());
+        super(runeType.getId());
         final int miniquestCompleted = Varps.get(491);  //1073799168?
         handler.addNotedPosition("edgeville", new Position(3088, 3502));
         handler.addNotedPosition("mage", new Position(3107, 3557));
@@ -105,7 +105,7 @@ public class Abyss extends CraftMethod {
     }
 
     public Abyss(final TreeScript handler, final RuneTypes runeType, final FoodTypes foodType) {
-        super(handler, runeType.getId());
+        super(runeType.getId());
         handler.addNotedPosition("edgeville", new Position(3088, 3502));
         handler.addNotedPosition("mage", new Position(3107, 3557));
         handler.addNotedPosition("center abyss", new Position(3037, 4830));

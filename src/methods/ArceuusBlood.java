@@ -8,7 +8,7 @@ import utils.RuneTypes;
 
 public class ArceuusBlood extends CraftMethod {
     public ArceuusBlood(final TreeScript handler) {
-        super(handler, RuneTypes.BLOOD.getId());
+        super(RuneTypes.BLOOD.getId());
         handler.addNotedPosition("dark altar", new Position(1718, 3882));
         handler.addNotedPosition("high agility outer", new Position(1761, 3874));
         handler.addNotedPosition("high agility inner", new Position(1761, 3871));
@@ -34,7 +34,9 @@ public class ArceuusBlood extends CraftMethod {
         third.setRight(new FragmentizeBlocks());
         second.setRight(new WalkToBloodAltar(handler));
         second = head.setRight(new HasDarkEssenceFragments());
-        second.setLeft(new WalkToDarkAltar(handler));
+        third = second.setLeft(new HasDarkEssence());
+        third.setLeft(new WalkToDarkAltar(handler));
+        third.setRight(new FragmentizeBlocks());
         second.setRight(new BindBloodAltar());
         setHead(head);
     }

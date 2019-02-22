@@ -9,7 +9,7 @@ import utils.RuneTypes;
 
 public class ArceuusMind extends CraftMethod {
     public ArceuusMind(final TreeScript handler) {
-        super(handler, RuneTypes.MIND.getId());
+        super(RuneTypes.MIND.getId());
         handler.addNotedPosition("castle wars", new Position(2440, 3089));
         handler.addNotedPosition("outside altar", new Position(2980, 3512));
         handler.addNotedPosition("inside altar", RuneTypes.MIND.getAltarPosition());

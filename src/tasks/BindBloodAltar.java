@@ -29,6 +29,6 @@ public class BindBloodAltar extends TreeTask {
 
     @Override
     public String toString() {
-        return "Binding dark essence";
+        return "Crafting runes";
     }
 }

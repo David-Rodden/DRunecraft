@@ -1,5 +1,6 @@
 package methods;
 
+import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 
@@ -12,16 +13,13 @@ import java.net.URL;
 
 public class CraftMethod {
     public static final int PURE_ESSENCE_ID = 7936;
-    private final TreeScript handler;
     private TreeTask head;
-    private final int id, essencePrice, runePrice;
+    private final int essencePrice, runePrice;
     private Image runeIcon;
 
-    CraftMethod(final TreeScript handler, final int id) {
-        this.id = id;
-        this.handler = handler;
+    CraftMethod(final int id) {
         essencePrice = findPrice(PURE_ESSENCE_ID);
-        this.runePrice = findPrice(id);
+        runePrice = findPrice(id);
         try {
             this.runeIcon = new ImageIcon(new URL("https://rsbuddy.com/items/" + id + ".png")).getImage();
         } catch (MalformedURLException e) {

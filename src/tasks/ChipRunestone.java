@@ -3,6 +3,7 @@ package tasks;
 import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import task_structure.TreeTask;
@@ -27,7 +28,7 @@ public class ChipRunestone extends TreeTask {
         runeStone.interact("Chip");
         Time.sleepUntil(() -> {
             final SceneObject[] currentRuneStones = SceneObjects.getLoaded(sceneObject -> sceneObject.getName().equals("Dense runestone"));
-            return currentRuneStones == null || currentRuneStones.length < allRuneStones.length;
+            return Inventory.isFull() || currentRuneStones == null || currentRuneStones.length < allRuneStones.length;
         }, 4500);
         return super.execute();
     }

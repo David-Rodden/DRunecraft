@@ -10,7 +10,7 @@ class DefaultWalkMethod extends CraftMethod {
     private final String runeType;
 
     DefaultWalkMethod(final TreeScript handler, final int id, final String runeType) {
-        super(handler, id);
+        super(id);
         this.handler = handler;
         this.runeType = runeType;
     }

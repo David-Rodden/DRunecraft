@@ -9,7 +9,7 @@ import utils.RuneTypes;
 
 public class CastleWarsFire extends CraftMethod {
     public CastleWarsFire(final TreeScript handler) {
-        super(handler, RuneTypes.FIRE.getId());
+        super(RuneTypes.FIRE.getId());
         handler.addNotedPosition("castle wars", new Position(2440, 3089));
         handler.addNotedPosition("duel arena", new Position(3312, 3235));
         handler.addNotedPosition("outside altar", new Position(3312, 3253));

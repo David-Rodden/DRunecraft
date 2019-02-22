@@ -9,7 +9,7 @@ import utils.RuneTypes;
 public class GeneralStoreNature extends CraftMethod {
 
     public GeneralStoreNature(final TreeScript handler) {
-        super(handler, RuneTypes.NATURE.getId());
+        super(RuneTypes.NATURE.getId());
         handler.addNotedPosition("general store", new Position(2768, 3120));
         handler.addNotedPosition("outside altar", new Position(2867, 3020));
         handler.addNotedPosition("inside altar", RuneTypes.NATURE.getAltarPosition());
