@@ -43,6 +43,8 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
 
     @Override
     public void onStop() {
+        final String lastTask = getTaskDescription();
+        if (lastTask != null && !lastTask.isEmpty()) Log.info("Stopped on task: " + lastTask);
         if (progressPaint != null) Log.info(progressPaint);
         super.onStop();
     }
@@ -57,7 +59,8 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
 
     @Override
     public void notify(final ItemTableEvent event) {
-        if (!getTaskDescription().contains("Crafting")) return;
+        final String taskDescription = getTaskDescription();
+        if (taskDescription == null || !taskDescription.contains("Crafting")) return;
         final RSItemDefinition objectDefinition = event.getDefinition();
         if (objectDefinition == null) return;
         if (objectDefinition.getName().matches(".+\\srune") && event.getChangeType() == ItemTableEvent.ChangeType.ITEM_ADDED)

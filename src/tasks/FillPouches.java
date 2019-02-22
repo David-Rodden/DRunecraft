@@ -30,8 +30,7 @@ public class FillPouches extends TreeTask {
     @Override
     public int execute() {
         final Stream<Pouches> pouches = Arrays.stream(Pouches.values()).filter(pouch -> handler.getNotedSetting(pouch.toString())).sorted(Comparator.comparing(Pouches::getBitSize).reversed());
-        final int initialEssenceCount = Inventory.getCount(CraftMethod.PURE_ESSENCE_ID);
-        int essenceCount = initialEssenceCount;
+        int essenceCount = Inventory.getCount(CraftMethod.PURE_ESSENCE_ID);
         for (final Pouches pouch : pouches.collect(Collectors.toSet())) {
             final String pouchName = pouch.toString();
             final int storageSize = pouch.getStorageSize();
@@ -43,7 +42,8 @@ public class FillPouches extends TreeTask {
             focused.interact("Fill");
             essenceCount -= storageSize;
         }
-        Time.sleepUntil(() -> Inventory.getCount(CraftMethod.PURE_ESSENCE_ID) < initialEssenceCount, Random.high(800, 1200));
+        final int resultingEssenceCount = essenceCount;
+        Time.sleepUntil(() -> Inventory.getCount(CraftMethod.PURE_ESSENCE_ID) == resultingEssenceCount, Random.high(1400, 1800));
         return super.execute();
     }
 

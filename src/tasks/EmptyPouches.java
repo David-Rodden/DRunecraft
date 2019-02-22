@@ -1,6 +1,5 @@
 package tasks;
 
-import methods.CraftMethod;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
@@ -40,7 +39,8 @@ public class EmptyPouches extends TreeTask {
             focused.interact("Empty");
             freeSlots -= storageSize;
         }
-        Time.sleepUntil(() -> Inventory.contains(CraftMethod.PURE_ESSENCE_ID), 1500);
+        final int resultingFreeSlots = freeSlots;
+        Time.sleepUntil(() -> Inventory.getFreeSlots() == resultingFreeSlots, 1500);
         return super.execute();
     }
 
