@@ -54,7 +54,7 @@ public class Abyss extends CraftMethod {
         TreeTask ninth = eighth.setLeft(new IsNearClanWars(handler));
         ninth.setLeft(new TeleportToClanWars(handler));
         TreeTask tenth = ninth.setRight(new IsBeingHunted(handler));
-        TreeTask eleventh = tenth.setLeft(new HasNecessaryItems(handler));
+        TreeTask eleventh = tenth.setLeft(new HasNecessaryAbyssItems(handler));
         eleventh.setLeft(new OpenBank());
         eleventh.setRight(new UseClanWarsPortal(handler));
         tenth.setRight(new HopToFreshWorld(handler));
@@ -73,7 +73,7 @@ public class Abyss extends CraftMethod {
         eighth.setRight(new RepairPouches());
         fifth.setRight(new FillPouches(handler));
         fifth = fourth.setRight(new IsBadGloryInInventory());
-        sixth = fifth.setLeft(new HasNecessaryItems(handler));
+        sixth = fifth.setLeft(new HasNecessaryAbyssItems(handler));
         seventh = sixth.setLeft(new HasEnoughEssence());
         eighth = seventh.setLeft(new IsRingEquipped());
         ninth = eighth.setLeft(new IsRingInInventory());
@@ -149,7 +149,7 @@ public class Abyss extends CraftMethod {
         seventh = sixth.setLeft(new IsBeingHunted(handler));
         eighth = seventh.setLeft(new IsNearMage());
         ninth = eighth.setLeft(new IsHealthBelowThreshold(2));
-        tenth = ninth.setLeft(new HasNecessaryItems(handler));
+        tenth = ninth.setLeft(new HasNecessaryAbyssItems(handler));
         tenth.setLeft(new OpenBank());
         tenth.setRight(new WalkToMage(handler));
         ninth.setRight(new OpenBank());
@@ -167,7 +167,7 @@ public class Abyss extends CraftMethod {
         fifth.setRight(new FillPouches(handler));
         fifth = fourth.setRight(new IsBadGloryInInventory());
         sixth = fifth.setLeft(new IsHealthBelowThreshold(2));
-        seventh = sixth.setLeft(new HasNecessaryItems(handler));
+        seventh = sixth.setLeft(new HasNecessaryAbyssItems(handler));
         eighth = seventh.setLeft(new HasEnoughEssence());
         ninth = eighth.setLeft(new IsGloryEquipped());
         tenth = ninth.setLeft(new IsGloryInInventory());

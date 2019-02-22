@@ -14,4 +14,9 @@ public class WalkToDarkAltar extends WalkToSpecified {
     public boolean validate() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Walking to dark altar";
+    }
 }

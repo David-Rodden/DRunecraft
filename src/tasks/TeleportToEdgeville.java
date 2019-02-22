@@ -32,7 +32,7 @@ public class TeleportToEdgeville extends TreeTask {
             final Item inventoryGlory = Inventory.getFirst(item -> item.getName().contains("Amulet of glory("));
             if (inventoryGlory == null) return -1;
             inventoryGlory.interact("Wear");
-            Time.sleepUntil(() -> EquipmentSlot.NECK.getItemName().contains("Amulet of glory("), 2000);
+            Time.sleepUntil(() -> Equipment.contains("Amulet of glory("), 2000);
         }
         EquipmentSlot.NECK.interact("Edgeville");
         final Position edgevillePosition = handler.getNotedPosition("edgeville");

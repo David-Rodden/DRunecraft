@@ -5,10 +5,10 @@ import org.rspeer.runetek.api.scene.SceneObjects;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 
-public class ShouldVenerateAltar extends TreeTask {
+public class IsNearDarkAltar extends TreeTask {
     private final TreeScript handler;
 
-    public ShouldVenerateAltar(final TreeScript handler) {
+    public IsNearDarkAltar(final TreeScript handler) {
         super(false);
         this.handler = handler;
     }

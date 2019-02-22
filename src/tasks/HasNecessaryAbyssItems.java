@@ -6,10 +6,10 @@ import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 
-public class HasNecessaryItems extends TreeTask {
+public class HasNecessaryAbyssItems extends TreeTask {
     private final TreeScript handler;
 
-    public HasNecessaryItems(final TreeScript handler) {
+    public HasNecessaryAbyssItems(final TreeScript handler) {
         super(false);
         this.handler = handler;
     }

@@ -9,6 +9,7 @@ import utils.Pathing;
 
 
 public class ShouldUseShortcut extends TreeTask {
+    static final int HIGH_AGILITY = 67, LOW_AGILITY = 52;
     private final TreeScript handler;
     private final boolean isHeadingToEssence;
 
@@ -24,6 +25,7 @@ public class ShouldUseShortcut extends TreeTask {
         final Position destination = isHeadingToEssence ? handler.getNotedPosition("center essence") : handler.getNotedPosition("dark altar");
         if (destination == null) return false;
         final int distanceToDestination = Pathing.getTrueDistance(destination);
-        return distanceToDestination >= 150 && agilityLevel >= 52;
+        if (!isHeadingToEssence) return distanceToDestination >= 150 && agilityLevel >= LOW_AGILITY;
+        return (agilityLevel >= HIGH_AGILITY && distanceToDestination < 160) || (agilityLevel >= LOW_AGILITY && distanceToDestination < 115);
     }
 }

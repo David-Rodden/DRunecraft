@@ -26,4 +26,9 @@ public class BindBloodAltar extends TreeTask {
         Time.sleep(750, 800);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Binding dark essence";
+    }
 }

@@ -25,4 +25,9 @@ public class VenerateAltar extends TreeTask {
         Time.sleepUntil(() -> Inventory.contains("Dark essence block") && !Players.getLocal().isAnimating(), 2000);
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Venerating dark altar";
+    }
 }
