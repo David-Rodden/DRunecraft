@@ -3,6 +3,7 @@ package tasks;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
 import org.rspeer.runetek.api.movement.position.Position;
+import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import utils.Pathing;
@@ -26,6 +27,6 @@ public class ShouldUseShortcut extends TreeTask {
         if (destination == null) return false;
         final int distanceToDestination = Pathing.getTrueDistance(destination);
         if (!isHeadingToEssence) return distanceToDestination >= 150 && agilityLevel >= LOW_AGILITY;
-        return (agilityLevel >= HIGH_AGILITY && distanceToDestination < 160) || (agilityLevel >= LOW_AGILITY && distanceToDestination < 115);
+        return ((agilityLevel >= HIGH_AGILITY && distanceToDestination < 195) || (agilityLevel >= LOW_AGILITY && distanceToDestination < 115)) && distanceToDestination > 80;
     }
 }

@@ -31,7 +31,7 @@ public class WalkToSpecified extends TreeTask {
             runThreshold = Random.high(15, 30);
         }
         Movement.walkTo(destination);
-        Time.sleepUntil(() -> !Movement.isDestinationSet() || Movement.getDestinationDistance() < MAXIMUM_DESTINATION_DISTANCE, Random.high(6000, 7000));
+        Time.sleepUntil(() -> !Movement.isDestinationSet() || Movement.getDestinationDistance() < MAXIMUM_DESTINATION_DISTANCE, Random.high(5000, 6000));
         return super.execute();
     }
 }
