@@ -1,6 +1,7 @@
 package tasks;
 
 import org.rspeer.runetek.api.movement.position.Position;
+import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import utils.Pathing;

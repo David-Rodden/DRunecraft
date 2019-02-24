@@ -23,7 +23,6 @@ public class BindBloodAltar extends TreeTask {
         if (altar == null) return super.execute();
         altar.interact("Bind");
         Time.sleepUntil(() -> !Inventory.contains("Dark essence fragments") && !Players.getLocal().isAnimating(), 5000);
-        Time.sleep(750, 800);
         return super.execute();
     }
 
