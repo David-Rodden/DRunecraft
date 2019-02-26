@@ -11,7 +11,7 @@ The use of a talisman may be added at a later date.
     - [x] Simple walking
         - Using Falador south bank
 - [ ] ![](https://i.imgur.com/1wfOVgd.png) Mind
-    - [ ] Arceuus teleport tablet teleportation
+    - [x] Arceuus teleport tablet teleportation
         - Using Castle wars bank
         - Requires dueling ring of 1 or more charge
         - Requires Arceuus teleport tablets
@@ -49,7 +49,22 @@ The use of a talisman may be added at a later date.
         - Using Draynor bank
         - Using Draynor wall shortcut if agility requirement met
         - Requires banking all combat equipment to access Entrana
- 
+ - [x] ![](https://i.imgur.com/jWCGVLR.png) Abyss
+    - [x] Clan wars method
+        - Uses Clan wars bank
+        - Loses skull, and replenishes health & run energy through FFA portal
+    - [x] Edgeville method
+        - Uses Edgeville bank
+        - Uses given food input & stamina potion if checked
+ - [ ] ![](https://i.imgur.com/6pzB0AQ.png) Astral
+    - [ ] Altar walk & Moonclan teleport
+        - Uses Lunar Isle bank
+        - Runs to the altar, teleports back
+- [x] ![](https://i.imgur.com/y96yYyO.png) Blood
+    -[x] Arceuus walking
+        - Requires chisel and pickaxe, chips from essence mine
+        - Venerates at dark altar
+        - Uses shortcuts if has a sufficient level
  ### What about Abyss runecrafting & pouches?
  
  Once the above tasks have been completed, Abyss will be the next process to tackle.
