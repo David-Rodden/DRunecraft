@@ -29,7 +29,13 @@ public class CastleWarsFire extends CraftMethod {
         TreeTask sixth = fifth.setLeft(new IsRingInInventory());
         sixth.setLeft(new WithdrawRing());
         sixth.setRight(new CloseBank());
-        fifth.setRight(new WithdrawPureEssence());
+        sixth = fifth.setRight(new ShouldUseStaminaPotion(handler));
+        TreeTask seventh = sixth.setLeft(new HasStaminaPotionInInventory());
+        seventh.setLeft(new WithdrawPureEssence());
+        seventh.setRight(new DepositStaminaPotion());
+        seventh = sixth.setRight(new HasStaminaPotionInInventory());
+        seventh.setLeft(new WithdrawStaminaPotion());
+        seventh.setRight(new DrinkStaminaPotion());
         fourth.setRight(new BankBadRings());
         third = second.setRight(new IsInAltar(handler));
         fourth = third.setLeft(new IsNearRuins(handler));
@@ -39,7 +45,7 @@ public class CastleWarsFire extends CraftMethod {
         sixth.setRight(new CloseBank());
         fifth.setRight(new WalkToRuins(handler));
         fourth.setRight(new EnterRuins(handler));
-        third.setRight(new CraftRunes(handler));
+        third.setRight(new CraftRunes(true));
         second = head.setRight(new IsBankOpen());
         third = second.setLeft(new IsNearBank());
         fourth = third.setLeft(new IsNearCastlewars(handler));

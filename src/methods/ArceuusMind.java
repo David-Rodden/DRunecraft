@@ -54,7 +54,7 @@ public class ArceuusMind extends CraftMethod {
         eighth.setRight(new WithdrawPureEssence());
         fifth.setRight(new TeleportToMindAltar(handler));
         fourth.setRight(new EnterRuins(handler));
-        third.setRight(new CraftRunes(handler));
+        third.setRight(new CraftRunes());
         second = head.setRight(new IsBankOpen());
         third = second.setLeft(new IsNearBank());
         fourth = third.setLeft(new IsNearCastlewars(handler));

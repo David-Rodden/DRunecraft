@@ -5,15 +5,18 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import task_structure.TreeScript;
 import task_structure.TreeTask;
 
 public class CraftRunes extends TreeTask {
-    private final TreeScript handler;
+    private final boolean shouldTeleportOut;
 
-    public CraftRunes(final TreeScript handler) {
+    public CraftRunes() {
+        this(false);
+    }
+
+    public CraftRunes(final boolean shouldTeleportOut) {
         super(true);
-        this.handler = handler;
+        this.shouldTeleportOut = shouldTeleportOut;
     }
 
     @Override
@@ -28,6 +31,7 @@ public class CraftRunes extends TreeTask {
         if (altar == null) return super.execute();
         altar.interact("Craft-rune");
         Time.sleepUntil(() -> !Inventory.contains("Pure essence") && !Players.getLocal().isAnimating(), 5000);
+        if (shouldTeleportOut) Time.sleep(650, 800);
         return super.execute();
     }
 

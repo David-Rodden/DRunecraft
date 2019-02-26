@@ -33,7 +33,7 @@ class DefaultWalkMethod extends CraftMethod {
         fourth = third.setLeft(new IsNearRuins(handler));
         fourth.setLeft(new WalkToRuins(handler));
         fourth.setRight(new EnterRuins(handler));
-        third.setRight(new CraftRunes(handler));
+        third.setRight(new CraftRunes());
         second = head.setRight(new IsBankOpen());
         third = second.setLeft(new IsNearBank());
         fourth = third.setLeft(new IsInAltar(handler));

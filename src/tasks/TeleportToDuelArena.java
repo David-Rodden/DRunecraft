@@ -1,6 +1,7 @@
 package tasks;
 
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.EquipmentSlot;
 import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
@@ -21,6 +22,7 @@ public class TeleportToDuelArena extends TreeTask {
 
     @Override
     public int execute() {
+        Equipment.refreshComponentData();
         EquipmentSlot.RING.interact("Duel arena");
         final Position duelArenaPosition = handler.getNotedPosition("duel arena");
         Time.sleepUntil(() -> duelArenaPosition != null && duelArenaPosition.distance() < 10, 4000);

@@ -87,7 +87,7 @@ public class Abyss extends CraftMethod {
         seventh.setRight(new DepositPureEssence());
         sixth.setRight(new CloseBank());
         fifth.setRight(new DepositBadGlory());
-        third.setRight(new CraftRunes(handler));
+        third.setRight(new CraftRunes());
         second = head.setRight(new IsInAltar(handler));
         third = second.setLeft(new IsBankOpen());
         fourth = third.setLeft(new IsNearBank());
@@ -100,7 +100,7 @@ public class Abyss extends CraftMethod {
         fourth = third.setLeft(new AreAllPouchesEmpty(handler));
         fourth.setLeft(new EmptyPouches(handler));
         fourth.setRight(new TeleportToClanWars(handler));
-        third.setRight(new CraftRunes(handler));
+        third.setRight(new CraftRunes());
         setHead(head);
     }
 
@@ -182,7 +182,7 @@ public class Abyss extends CraftMethod {
         eighth.setRight(new EatFood(foodName));
         seventh.setRight(new DepositPureEssence());
         fifth.setRight(new DepositBadGlory());
-        third.setRight(new CraftRunes(handler));
+        third.setRight(new CraftRunes());
         second = head.setRight(new IsInAltar(handler));
         third = second.setLeft(new IsBankOpen());
         fourth = third.setLeft(new IsNearBank());
@@ -195,7 +195,7 @@ public class Abyss extends CraftMethod {
         fourth = third.setLeft(new AreAllPouchesEmpty(handler));
         fourth.setLeft(new EmptyPouches(handler));
         fourth.setRight(new TeleportToEdgeville(handler));
-        third.setRight(new CraftRunes(handler));
+        third.setRight(new CraftRunes());
         setHead(head);
     }
 }

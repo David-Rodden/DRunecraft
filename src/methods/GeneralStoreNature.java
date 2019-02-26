@@ -27,7 +27,7 @@ public class GeneralStoreNature extends CraftMethod {
         third = second.setLeft(new IsNearRuins(handler));
         third.setLeft(new WalkToRuins(handler));
         third.setRight(new EnterRuins(handler));
-        second.setRight(new CraftRunes(handler));
+        second.setRight(new CraftRunes());
         setHead(head);
     }
 }
