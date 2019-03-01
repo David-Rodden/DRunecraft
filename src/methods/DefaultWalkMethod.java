@@ -23,7 +23,7 @@ class DefaultWalkMethod extends CraftMethod {
         fourth.setLeft(new WalkToBank(bankLocation));
         fourth.setRight(new OpenBank());
         fourth = third.setRight(new ShouldUseStaminaPotion(handler));
-        TreeTask fifth = fourth.setLeft(new HasStaminaPotionInInventory());
+        TreeTask fifth = fourth.setLeft(new HasStaminaPotionInInventory(true));
         fifth.setLeft(new WithdrawPureEssence());
         fifth.setRight(new DepositStaminaPotion());
         fifth = fourth.setRight(new HasStaminaPotionInInventory());

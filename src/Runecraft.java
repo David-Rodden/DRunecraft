@@ -2,6 +2,7 @@ import display.ProgressPaint;
 import display.RunecraftGUI;
 import methods.CraftMethod;
 import org.rspeer.runetek.event.listeners.ItemTableListener;
+import org.rspeer.runetek.event.listeners.MouseInputListener;
 import org.rspeer.runetek.event.listeners.RenderListener;
 import org.rspeer.runetek.event.types.ItemTableEvent;
 import org.rspeer.runetek.event.types.RenderEvent;
@@ -12,9 +13,10 @@ import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 @ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.5)
-public class Runecraft extends TreeScript implements RenderListener, ItemTableListener {
+public class Runecraft extends TreeScript implements RenderListener, ItemTableListener, MouseInputListener {
     private RunecraftGUI runecraftGUI;
     private ProgressPaint progressPaint;
     private boolean willStart;
@@ -67,5 +69,14 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
             progressPaint.updateRunes(event.getStackSize() - event.getOldStackSize());
         else if (objectDefinition.getName().contains("essence") && event.getChangeType() == ItemTableEvent.ChangeType.ITEM_REMOVED)
             progressPaint.updateEssence();
+    }
+
+    @Override
+    public void notify(final MouseEvent mouseEvent) {
+        if (progressPaint == null || mouseEvent == null) return;
+        final Object eventSource = mouseEvent.getSource();
+        if (eventSource == null || eventSource.equals("bot") || !mouseEvent.paramString().split(",")[0].equals("MOUSE_RELEASED"))
+            return;
+        progressPaint.toggleIfMet(mouseEvent.getPoint());
     }
 }

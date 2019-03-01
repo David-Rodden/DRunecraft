@@ -12,12 +12,14 @@ import java.net.URL;
 import java.util.Arrays;
 
 public class ProgressPaint {
+    private final static int PAINT_ORIGIN_X = 6, PAINT_ORIGIN_Y = 344, PAINT_WIDTH = 507, PAINT_HEIGHT = 129;
     private final Font progressFont;
     private final StopWatch runtime;
     private Image progressPaint, runePaint;
     private final int runeCost, essenceCost, startExperience;
     private int runes, essence;
     private final Color timeColor, runeColor, xpColor, gpColor;
+    private boolean visible;
 
     public ProgressPaint(final CraftMethod method) {
         try {
@@ -37,6 +39,7 @@ public class ProgressPaint {
         gpColor = new Color(133, 193, 91);
         // Once everything is set, start our script timer
         runtime = StopWatch.start();
+        visible = true;
     }
 
     public void updateRunes(final int added) {
@@ -53,8 +56,9 @@ public class ProgressPaint {
 
     public void displayPaint(final Graphics graphics) {
         graphics.setFont(progressFont);
+        if (!visible) return;
         if (progressPaint == null) return;
-        graphics.drawImage(progressPaint, 6, 344, null);
+        graphics.drawImage(progressPaint, PAINT_ORIGIN_X, PAINT_ORIGIN_Y, null);
         graphics.drawImage(runePaint, 33, 418, null);
         graphics.setColor(timeColor);
         graphics.drawString(runtime.toElapsedString(), 60, 375);
@@ -81,5 +85,12 @@ public class ProgressPaint {
     @Override
     public String toString() {
         return String.format("Total Runtime: %s, Experience Gained: %d, Money Accrued: %d", runtime.toElapsedString(), Skills.getExperience(Skill.RUNECRAFTING) - startExperience, runes * runeCost - essence * essenceCost);
+    }
+
+    public void toggleIfMet(final Point point) {
+        if (progressPaint == null) return;
+        final double x = point.getX(), y = point.getY();
+        if (x > PAINT_ORIGIN_X && y > PAINT_ORIGIN_Y && x < PAINT_ORIGIN_X + PAINT_WIDTH && y < PAINT_ORIGIN_Y + PAINT_HEIGHT)
+            visible = !visible;
     }
 }

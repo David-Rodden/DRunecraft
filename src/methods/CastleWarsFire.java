@@ -30,7 +30,7 @@ public class CastleWarsFire extends CraftMethod {
         sixth.setLeft(new WithdrawRing());
         sixth.setRight(new CloseBank());
         sixth = fifth.setRight(new ShouldUseStaminaPotion(handler));
-        TreeTask seventh = sixth.setLeft(new HasStaminaPotionInInventory());
+        TreeTask seventh = sixth.setLeft(new HasStaminaPotionInInventory(true));
         seventh.setLeft(new WithdrawPureEssence());
         seventh.setRight(new DepositStaminaPotion());
         seventh = sixth.setRight(new HasStaminaPotionInInventory());
