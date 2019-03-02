@@ -17,18 +17,22 @@ class DefaultWalkMethod extends CraftMethod {
 
     void buildTree(final BankLocation bankLocation) {
         final TreeTask head = new HasRunes(runeType);
-        TreeTask second = head.setLeft(new HasPureEssence());
+        TreeTask second = head.setLeft(new HasPureEssenceAndTiara(runeType));
         TreeTask third = second.setLeft(new IsBankOpen());
         TreeTask fourth = third.setLeft(new IsNearBank());
         fourth.setLeft(new WalkToBank(bankLocation));
         fourth.setRight(new OpenBank());
-        fourth = third.setRight(new ShouldUseStaminaPotion(handler));
-        TreeTask fifth = fourth.setLeft(new HasStaminaPotionInInventory(true));
-        fifth.setLeft(new WithdrawPureEssence());
-        fifth.setRight(new DepositStaminaPotion());
-        fifth = fourth.setRight(new HasStaminaPotionInInventory());
-        fifth.setLeft(new WithdrawStaminaPotion());
-        fifth.setRight(new DrinkStaminaPotion());
+        fourth = third.setRight(new IsTiaraEquipped(runeType));
+        TreeTask fifth = fourth.setLeft(new HasTiaraInInventory(runeType));
+        fifth.setLeft(new WithdrawTiara(runeType));
+        fifth.setRight(new EquipTiara(runeType));
+        fifth = fourth.setRight(new ShouldUseStaminaPotion(handler));
+        TreeTask sixth = fifth.setLeft(new HasStaminaPotionInInventory(true));
+        sixth.setLeft(new WithdrawPureEssence());
+        sixth.setRight(new DepositStaminaPotion());
+        sixth = fifth.setRight(new HasStaminaPotionInInventory());
+        sixth.setLeft(new WithdrawStaminaPotion());
+        sixth.setRight(new DrinkStaminaPotion());
         third = second.setRight(new IsInAltar(handler));
         fourth = third.setLeft(new IsNearRuins(handler));
         fourth.setLeft(new WalkToRuins(handler));

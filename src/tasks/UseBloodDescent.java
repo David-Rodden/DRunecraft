@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
@@ -27,7 +28,7 @@ public class UseBloodDescent extends TreeTask {
         final SceneObject shortcut = SceneObjects.getNearest(sceneObject -> sceneObject.getName().equals("Rocks") && sceneObject.containsAction("Climb") && sceneObject.distance(bloodDescentPosition) <= 2);
         if (shortcut != null) {
             shortcut.interact("Climb");
-            Time.sleepUntil(() -> !Players.getLocal().isAnimating() && bloodDescentPosition.distance() > 1, 4000);
+            Time.sleepUntil(() -> !Players.getLocal().isAnimating() && bloodDescentPosition.distance() > 1, Random.high(3800, 4200));
         }
         return super.execute();
     }

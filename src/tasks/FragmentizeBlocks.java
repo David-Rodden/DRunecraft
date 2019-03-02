@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import task_structure.TreeTask;
@@ -29,7 +30,7 @@ public class FragmentizeBlocks extends TreeTask {
             if (mustBeRunning && (!Movement.isDestinationSet() || Movement.getDestinationDistance() < 5)) return;
             if (!Inventory.isItemSelected()) {
                 chisel.interact("Use");
-                Time.sleepUntil(Inventory::isItemSelected, 1000);
+                Time.sleepUntil(Inventory::isItemSelected, Random.high(900, 1200));
             }
             if (block == null) continue;
             block.interact("Use");

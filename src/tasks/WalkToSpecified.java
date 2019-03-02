@@ -33,7 +33,7 @@ public class WalkToSpecified extends TreeTask {
         if (destination == null) return super.execute();
         if (!Movement.isRunEnabled() && Movement.getRunEnergy() > runThreshold) {
             Movement.toggleRun(true);
-            Time.sleepUntil(Movement::isRunEnabled, 1000);
+            Time.sleepUntil(Movement::isRunEnabled, Random.high(950, 1400));
             runThreshold = Random.high(15, 30);
         }
         Movement.walkTo(destination);

@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
@@ -22,7 +23,7 @@ public class BindBloodAltar extends TreeTask {
         final SceneObject altar = SceneObjects.getNearest("Blood Altar");
         if (altar == null) return super.execute();
         altar.interact("Bind");
-        Time.sleepUntil(() -> !Inventory.contains("Dark essence fragments") && !Players.getLocal().isAnimating(), 5000);
+        Time.sleepUntil(() -> !Inventory.contains("Dark essence fragments") && !Players.getLocal().isAnimating(), Random.high(4700, 5100));
         return super.execute();
     }
 

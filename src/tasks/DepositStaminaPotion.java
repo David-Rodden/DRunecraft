@@ -1,6 +1,7 @@
 package tasks;
 
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeTask;
@@ -23,7 +24,7 @@ public class DepositStaminaPotion extends TreeTask {
     @Override
     public int execute() {
         Bank.depositAll(item -> item.getName().matches(staminaPattern.toString()));
-        Time.sleepUntil(() -> !Inventory.contains(staminaPattern), 1500);
+        Time.sleepUntil(() -> !Inventory.contains(staminaPattern), Random.high(1300, 1500));
         return super.execute();
     }
 

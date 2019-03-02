@@ -3,6 +3,7 @@ package tasks;
 import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
@@ -23,7 +24,7 @@ public class ChipRunestone extends TreeTask {
     public int execute() {
         if (!Movement.isRunEnabled() && Movement.getRunEnergy() > 10) {
             Movement.toggleRun(true);
-            Time.sleepUntil(Movement::isRunEnabled, 1000);
+            Time.sleepUntil(Movement::isRunEnabled, Random.high(900, 1400));
         }
         final Player myself = Players.getLocal();
         final SceneObject[] allRuneStones = SceneObjects.getLoaded(sceneObject -> sceneObject.getName().equals("Dense runestone"));

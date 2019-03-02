@@ -30,7 +30,7 @@ public class WithdrawRing extends TreeTask {
             final String ring = "Ring of dueling(" + charge + ')';
             if (!Bank.contains(ring)) continue;
             Bank.withdraw(ring, 1);
-            Time.sleepUntil(() -> Inventory.contains(ring), 4000);
+            Time.sleepUntil(() -> Inventory.contains(ring), Random.high(3200, 4100));
             return super.execute();
         }
         // Fail if no rings left

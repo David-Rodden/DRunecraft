@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
@@ -30,7 +31,7 @@ public class CraftRunes extends TreeTask {
         final SceneObject altar = SceneObjects.getNearest("Altar");
         if (altar == null) return super.execute();
         altar.interact("Craft-rune");
-        Time.sleepUntil(() -> !Inventory.contains("Pure essence") && !Players.getLocal().isAnimating(), 5000);
+        Time.sleepUntil(() -> !Inventory.contains("Pure essence") && !Players.getLocal().isAnimating(), Random.high(4900, 5100));
         if (shouldTeleportOut) Time.sleep(650, 800);
         return super.execute();
     }

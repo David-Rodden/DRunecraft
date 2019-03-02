@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import task_structure.TreeTask;
@@ -22,7 +23,7 @@ public class DrinkStaminaPotion extends TreeTask {
         if (staminaPotion != null) {
             final int runEnergy = Movement.getRunEnergy();
             staminaPotion.interact("Drink");
-            Time.sleepUntil(() -> Movement.getRunEnergy() > runEnergy, 2000);
+            Time.sleepUntil(() -> Movement.getRunEnergy() > runEnergy, Random.high(1900, 2100));
         }
         return super.execute();
     }

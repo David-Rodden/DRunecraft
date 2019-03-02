@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.scene.Npc;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
@@ -30,10 +31,10 @@ public class WalkToJiminua extends TreeTask {
         final Npc monster = Npcs.getNearest(npc -> npc.getCombatLevel() * 2 > Players.getLocal().getCombatLevel());
         if (!Movement.isRunEnabled() && (Movement.getRunEnergy() > 20 || (monster != null && monster.distance() < 5 && Movement.getRunEnergy() > 5))) {
             Movement.toggleRun(true);
-            Time.sleepUntil(Movement::isRunEnabled, 1000);
+            Time.sleepUntil(Movement::isRunEnabled, Random.high(950, 1200));
         }
         Movement.walkTo(generalStorePosition);
-        Time.sleepUntil(() -> !Movement.isDestinationSet() || Movement.getDestinationDistance() < 5, 5000);
+        Time.sleepUntil(() -> !Movement.isDestinationSet() || Movement.getDestinationDistance() < 5, Random.high(4000, 5500));
         return super.execute();
     }
 

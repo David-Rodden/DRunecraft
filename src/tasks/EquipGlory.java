@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeTask;
 
@@ -25,7 +26,7 @@ public class EquipGlory extends TreeTask {
         final Item glory = Inventory.getFirst(gloryPattern);
         if (glory != null) {
             glory.interact("Wear");
-            Time.sleepUntil(() -> Inventory.getFirst(gloryPattern) == null, 2000);
+            Time.sleepUntil(() -> Inventory.getFirst(gloryPattern) == null, Random.high(1900, 2500));
         }
         return super.execute();
     }

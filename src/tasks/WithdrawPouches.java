@@ -1,6 +1,7 @@
 package tasks;
 
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeScript;
@@ -34,7 +35,7 @@ public class WithdrawPouches extends TreeTask {
         for (final Pouches pouch : pouches) {
             final String pouchName = pouch.toString();
             Bank.withdraw(pouchName, 1);
-            Time.sleepUntil(() -> Inventory.contains(pouchName), 3000);
+            Time.sleepUntil(() -> Inventory.contains(pouchName), Random.high(2900, 3300));
         }
         return super.execute();
     }

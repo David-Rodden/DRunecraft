@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
@@ -40,7 +41,7 @@ public class EmptyPouches extends TreeTask {
             freeSlots -= storageSize;
         }
         final int resultingFreeSlots = freeSlots;
-        Time.sleepUntil(() -> Inventory.getFreeSlots() == resultingFreeSlots, 1500);
+        Time.sleepUntil(() -> Inventory.getFreeSlots() == resultingFreeSlots, Random.high(1400, 1700));
         return super.execute();
     }
 

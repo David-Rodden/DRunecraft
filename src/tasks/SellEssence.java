@@ -3,6 +3,7 @@ package tasks;
 import methods.CraftMethod;
 import org.rspeer.runetek.api.Definitions;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Shop;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeTask;
@@ -23,7 +24,7 @@ public class SellEssence extends TreeTask {
         if (needed > 10) Shop.sellTen(essenceStack);
         else if (needed > 5) Shop.sellFive(essenceStack);
         else Shop.sellOne(essenceStack);
-        Time.sleepUntil(() -> Shop.getQuantity("Pure essence") > inStock, 4000);
+        Time.sleepUntil(() -> Shop.getQuantity("Pure essence") > inStock, Random.high(2900, 4100));
         return super.execute();
     }
 

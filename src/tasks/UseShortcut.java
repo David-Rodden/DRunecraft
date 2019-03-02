@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
 import org.rspeer.runetek.api.movement.position.Position;
@@ -33,7 +34,7 @@ public class UseShortcut extends TreeTask {
         final SceneObject shortcut = SceneObjects.getNearest(sceneObject -> sceneObject.getName().equals("Rocks") && sceneObject.containsAction("Climb") && sceneObject.distance(rockPosition) < 2);
         if (shortcut != null) {
             shortcut.interact("Climb");
-            Time.sleepUntil(() -> !Players.getLocal().isAnimating() && rockPosition.distance() > 1, 4000);
+            Time.sleepUntil(() -> !Players.getLocal().isAnimating() && rockPosition.distance() > 1, Random.high(3700, 4200));
         }
         return super.execute();
     }

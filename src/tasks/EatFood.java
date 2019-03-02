@@ -2,6 +2,7 @@ package tasks;
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeTask;
 
@@ -23,7 +24,7 @@ public class EatFood extends TreeTask {
         final Item food = Inventory.getFirst(foodType);
         if (food != null) {
             food.interact(s -> s.matches("(Eat|Drink)"));
-            Time.sleepUntil(() -> !Inventory.contains(foodType), 2000);
+            Time.sleepUntil(() -> !Inventory.contains(foodType), Random.high(1900, 2200));
         }
         return super.execute();
     }

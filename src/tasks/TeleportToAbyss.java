@@ -3,6 +3,7 @@ package tasks;
 import org.rspeer.runetek.adapter.scene.Npc;
 import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.ui.Log;
@@ -36,7 +37,7 @@ public class TeleportToAbyss extends WildernessWalkToSpecified {
         if (zamorakMage == null) return super.execute();
         zamorakMage.interact("Teleport");
         final Position centerAbyssPosition = handler.getNotedPosition("center abyss");
-        Time.sleepUntil(() -> centerAbyssPosition != null && centerAbyssPosition.distance() < 120, 2500);
+        Time.sleepUntil(() -> centerAbyssPosition != null && centerAbyssPosition.distance() < 120, Random.high(2300, 2800));
         return 100;
     }
 

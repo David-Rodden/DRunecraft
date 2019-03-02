@@ -15,7 +15,7 @@ import task_structure.TreeScript;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-@ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.5)
+@ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.6)
 public class Runecraft extends TreeScript implements RenderListener, ItemTableListener, MouseInputListener {
     private RunecraftGUI runecraftGUI;
     private ProgressPaint progressPaint;
@@ -23,7 +23,7 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
 
     @Override
     public void onStart() {
-        willStart = getRSPeerUser().getUsername().equals("Dungeonqueer");
+        willStart = getRSPeerUser().getUsername().equals("CoffeeDog");
         if (willStart) runecraftGUI = new RunecraftGUI();
         super.onStart();
     }

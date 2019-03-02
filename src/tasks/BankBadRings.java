@@ -1,6 +1,7 @@
 package tasks;
 
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import task_structure.TreeTask;
@@ -18,7 +19,7 @@ public class BankBadRings extends TreeTask {
     @Override
     public int execute() {
         Bank.depositAll("Ring of dueling(1)");
-        Time.sleepUntil(() -> !Inventory.contains("Ring of dueling(1)"), 4000);
+        Time.sleepUntil(() -> !Inventory.contains("Ring of dueling(1)"), Random.high(2800, 3300));
         return super.execute();
     }
 
