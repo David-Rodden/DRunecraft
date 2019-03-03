@@ -1,6 +1,7 @@
 import display.ProgressPaint;
 import display.RunecraftGUI;
 import methods.CraftMethod;
+import methods.RunecraftTask;
 import org.rspeer.runetek.event.listeners.ItemTableListener;
 import org.rspeer.runetek.event.listeners.MouseInputListener;
 import org.rspeer.runetek.event.listeners.RenderListener;
@@ -14,16 +15,19 @@ import task_structure.TreeScript;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.Queue;
 
 @ScriptMeta(name = "DRunecraft", desc = "Crafts runes", developer = "Dungeonqueer", category = ScriptCategory.RUNECRAFTING, version = 1.6)
 public class Runecraft extends TreeScript implements RenderListener, ItemTableListener, MouseInputListener {
     private RunecraftGUI runecraftGUI;
     private ProgressPaint progressPaint;
     private boolean willStart;
+    private Queue<RunecraftTask> taskQueue;
+    private RunecraftTask currentTask;
 
     @Override
     public void onStart() {
-        willStart = getRSPeerUser().getUsername().equals("CoffeeDog");
+        willStart = getRSPeerUser().getUsername().equals("Dungeonqueer");
         if (willStart) runecraftGUI = new RunecraftGUI();
         super.onStart();
     }
@@ -35,19 +39,31 @@ public class Runecraft extends TreeScript implements RenderListener, ItemTableLi
             return -1;
         }
         if (!runecraftGUI.hasBeenSet()) return runecraftGUI.isHidden() ? -1 : 2000;
-        if (!hasHeadBeenSet()) {
-            final CraftMethod craftMethod = runecraftGUI.getMethod(this);
-            setHead(craftMethod.getHead());
-            progressPaint = new ProgressPaint(craftMethod);
+        if (taskQueue == null) taskQueue = runecraftGUI.getRunecraftTasks();
+        if (currentTask == null || currentTask.hasReachedGoal()) {
+            if (taskQueue.isEmpty()) return -1;
+            else {
+                if (currentTask != null) Log.info(progressPaint);
+                currentTask = taskQueue.remove();
+                Log.info("Current task set to " + currentTask.toString());
+                final CraftMethod craftMethod = currentTask.getMethod(this);
+                setHead(craftMethod.getHead());
+                progressPaint = new ProgressPaint(craftMethod);
+            }
+            return super.loop();
         }
-        return traverseTree();
+        final int traversed = traverseTree();
+        final boolean badTraverse = traversed == -1;
+        if (badTraverse) currentTask = null;
+        return badTraverse ? super.loop() : traversed;
     }
 
     @Override
     public void onStop() {
         final String lastTask = getTaskDescription();
-        if (lastTask != null && !lastTask.isEmpty()) Log.info("Stopped on task: " + lastTask);
+//        if (lastTask != null && !lastTask.isEmpty()) Log.info("Stopped on task: " + lastTask);
         if (progressPaint != null) Log.info(progressPaint);
+        if (runecraftGUI != null) runecraftGUI.exit();
         super.onStop();
     }
 

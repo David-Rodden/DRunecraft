@@ -4,6 +4,7 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
+import org.rspeer.runetek.api.scene.Players;
 import task_structure.TreeTask;
 
 public class WalkToSpecified extends TreeTask {
@@ -37,7 +38,7 @@ public class WalkToSpecified extends TreeTask {
             runThreshold = Random.high(15, 30);
         }
         Movement.walkTo(destination);
-        Time.sleepUntil(() -> (!allowForRunAction && !Movement.isDestinationSet()) || Movement.getDestinationDistance() < MAXIMUM_DESTINATION_DISTANCE * (allowForRunAction ? 4 : 1), Random.high(5000, 6000));
+        Time.sleepUntil(() -> !Players.getLocal().isAnimating() && (!allowForRunAction && !Movement.isDestinationSet()) || Movement.getDestinationDistance() < MAXIMUM_DESTINATION_DISTANCE * (allowForRunAction ? 2 : 1), Random.high(5000, 6000));
         return super.execute();
     }
 }
