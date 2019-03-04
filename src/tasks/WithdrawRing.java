@@ -4,6 +4,7 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.ui.Log;
 import task_structure.TreeTask;
 
 public class WithdrawRing extends TreeTask {
@@ -33,7 +34,7 @@ public class WithdrawRing extends TreeTask {
             Time.sleepUntil(() -> Inventory.contains(ring), Random.high(3200, 4100));
             return super.execute();
         }
-        // Fail if no rings left
+        Log.severe("We've run out of dueling rings!");
         return -1;
     }
 

@@ -4,6 +4,7 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import utils.Pouches;
@@ -31,7 +32,10 @@ public class WithdrawPouches extends TreeTask {
             final String pouchName = pouch.toString();
             return handler.getNotedSetting(pouchName) && !Inventory.contains(pouchName);
         }).collect(Collectors.toSet());
-        if (pouches.isEmpty()) return -1;
+        if (pouches.isEmpty()) {
+            Log.info("Unable to locate selected pouches!");
+            return -1;
+        }
         for (final Pouches pouch : pouches) {
             final String pouchName = pouch.toString();
             Bank.withdraw(pouchName, 1);
