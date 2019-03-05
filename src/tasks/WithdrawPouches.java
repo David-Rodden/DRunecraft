@@ -33,7 +33,7 @@ public class WithdrawPouches extends TreeTask {
             return handler.getNotedSetting(pouchName) && !Inventory.contains(pouchName);
         }).collect(Collectors.toSet());
         if (pouches.isEmpty()) {
-            Log.info("Unable to locate selected pouches!");
+            Log.severe("Unable to locate selected pouches!");
             return -1;
         }
         for (final Pouches pouch : pouches) {

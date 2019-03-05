@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class WithdrawMindTabs extends Withdrawal {
 
     public WithdrawMindTabs() {
-        super(Pattern.compile("Mind altar teleport"));
+        super("Mind altar teleport", Pattern.compile("Mind altar teleport"));
     }
 
     @Override

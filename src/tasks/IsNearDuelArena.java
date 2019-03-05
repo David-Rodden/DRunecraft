@@ -15,6 +15,6 @@ public class IsNearDuelArena extends TreeTask {
     @Override
     public boolean validate() {
         final Position duelArenaPosition = handler.getNotedPosition("duel arena");
-        return duelArenaPosition != null && duelArenaPosition.distance() < 20;
+        return duelArenaPosition != null && duelArenaPosition.distance() < 40;
     }
 }

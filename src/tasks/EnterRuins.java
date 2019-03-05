@@ -27,7 +27,7 @@ public class EnterRuins extends TreeTask {
         if (ruins == null) return super.execute();
         ruins.interact("Enter");
         final Position altarPosition = handler.getNotedPosition("inside altar");
-        Time.sleepUntil(() -> altarPosition != null && altarPosition.distance() < 20, Random.high(2000, 2500));
+        Time.sleepUntil(() -> altarPosition != null && altarPosition.distance() < 20, Random.high(2500, 2700));
         return super.execute();
     }
 

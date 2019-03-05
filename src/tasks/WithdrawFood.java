@@ -6,7 +6,7 @@ public class WithdrawFood extends Withdrawal {
 
 
     public WithdrawFood(final String foodType) {
-        super(Pattern.compile(foodType));
+        super(foodType, Pattern.compile(foodType));
     }
 
     @Override

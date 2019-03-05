@@ -34,7 +34,7 @@ public class WithdrawRing extends TreeTask {
             Time.sleepUntil(() -> Inventory.contains(ring), Random.high(3200, 4100));
             return super.execute();
         }
-        Log.severe("We've run out of dueling rings!");
+        Log.severe("We've run out of Rings of dueling!");
         return -1;
     }
 

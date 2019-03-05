@@ -1,6 +1,7 @@
 package methods;
 
 import display.RunecraftGUI;
+import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
 import task_structure.TreeScript;
@@ -56,7 +57,7 @@ public class RunecraftTask {
     }
 
     public boolean hasReachedGoal() {
-        return !adNauseam && Skills.getLevel(Skill.RUNECRAFTING) >= levelGoal;
+        return !adNauseam && Skills.getLevel(Skill.RUNECRAFTING) >= levelGoal && (Bank.isOpen() || methodName.matches("Arceuus (blood|soul)"));
     }
 
     @Override

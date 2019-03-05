@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class WithdrawPureEssence extends Withdrawal {
 
     public WithdrawPureEssence() {
-        super(Pattern.compile("Pure essence"), false);
+        super("Pure essence", Pattern.compile("Pure essence"), false);
     }
 
     @Override

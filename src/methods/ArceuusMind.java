@@ -14,7 +14,7 @@ public class ArceuusMind extends CraftMethod {
         handler.addNotedPosition("outside altar", new Position(2980, 3512));
         handler.addNotedPosition("inside altar", RuneTypes.MIND.getAltarPosition());
         final String runeType = RuneTypes.MIND.toString();
-        final TreeTask head = new HasRunes(runeType);
+        final TreeTask head = new HasRunes();
         TreeTask second = head.setLeft(new HasPureEssenceAndTiara(runeType));
         TreeTask third = second.setLeft(new IsBankOpen());
         TreeTask fourth = third.setLeft(new IsNearBank());

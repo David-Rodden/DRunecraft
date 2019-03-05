@@ -15,7 +15,7 @@ public class CastleWarsFire extends CraftMethod {
         handler.addNotedPosition("outside altar", new Position(3312, 3253));
         handler.addNotedPosition("inside altar", RuneTypes.FIRE.getAltarPosition());
         final String runeType = RuneTypes.FIRE.toString();
-        final TreeTask head = new HasRunes(runeType);
+        final TreeTask head = new HasRunes();
         TreeTask second = head.setLeft(new HasPureEssenceAndTiara(runeType));
         TreeTask third = second.setLeft(new IsBankOpen());
         TreeTask fourth = third.setLeft(new IsNearBank());

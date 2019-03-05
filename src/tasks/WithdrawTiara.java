@@ -6,7 +6,7 @@ public class WithdrawTiara extends Withdrawal {
     private final String runeType;
 
     public WithdrawTiara(final String runeType) {
-        super(Pattern.compile(runeType + "\\stiara"));
+        super(runeType + " tiara", Pattern.compile(runeType + "\\stiara"));
         this.runeType = runeType;
     }
 

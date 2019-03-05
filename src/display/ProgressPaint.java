@@ -32,7 +32,7 @@ public class ProgressPaint {
         essenceCost = method.getEssencePrice();
         startExperience = Skills.getExperience(Skill.RUNECRAFTING);
         progressFont = Arrays.asList(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames()).contains("High Tower Text") ?
-                new Font("High Tower Text", Font.PLAIN, 20) : new Font("Book Antiqua", Font.BOLD, 18);
+                new Font("High Tower Text", Font.PLAIN, 20) : new Font("Constantia", Font.PLAIN, 18);
         timeColor = new Color(201, 201, 201);
         runeColor = new Color(97, 199, 201);
         xpColor = new Color(221, 130, 224);

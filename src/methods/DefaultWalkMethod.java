@@ -16,7 +16,7 @@ class DefaultWalkMethod extends CraftMethod {
     }
 
     void buildTree(final BankLocation bankLocation) {
-        final TreeTask head = new HasRunes(runeType);
+        final TreeTask head = new HasRunes();
         TreeTask second = head.setLeft(new HasPureEssenceAndTiara(runeType));
         TreeTask third = second.setLeft(new IsBankOpen());
         TreeTask fourth = third.setLeft(new IsNearBank());

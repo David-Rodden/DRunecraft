@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class WithdrawStaminaPotion extends Withdrawal {
 
     public WithdrawStaminaPotion() {
-        super(Pattern.compile("Stamina potion\\(\\d\\)"));
+        super("Stamina potion", Pattern.compile("Stamina potion\\(\\d\\)"));
     }
 
     @Override

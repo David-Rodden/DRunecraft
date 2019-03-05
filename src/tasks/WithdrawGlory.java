@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class WithdrawGlory extends Withdrawal {
 
     public WithdrawGlory() {
-        super(Pattern.compile("Amulet of glory\\(\\d\\)"));
+        super("Amulet of glory", Pattern.compile("Amulet of glory\\(\\d\\)"));
     }
 
     @Override

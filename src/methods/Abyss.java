@@ -20,7 +20,7 @@ public class Abyss extends CraftMethod {
         handler.addNotedPosition("inner ffa", new Position(3327, 4751));
         handler.addNotedPosition("clan wars", new Position(3369, 3170));
         handler.addNotedPosition("inside altar", runeType.getAltarPosition());
-        final TreeTask head = new HasRunes(runeType.toString());
+        final TreeTask head = new HasRunes();
         TreeTask second = head.setLeft(new HasPureEssence());
         TreeTask third = second.setLeft(new IsInAltar(handler));
         TreeTask fourth = third.setLeft(new IsBankOpen());
@@ -110,7 +110,7 @@ public class Abyss extends CraftMethod {
         handler.addNotedPosition("mage", new Position(3107, 3557));
         handler.addNotedPosition("center abyss", new Position(3037, 4830));
         handler.addNotedPosition("inside altar", runeType.getAltarPosition());
-        final TreeTask head = new HasRunes(runeType.toString());
+        final TreeTask head = new HasRunes();
         TreeTask second = head.setLeft(new HasPureEssence());
         TreeTask third = second.setLeft(new IsInAltar(handler));
         TreeTask fourth = third.setLeft(new IsBankOpen());
