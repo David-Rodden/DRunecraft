@@ -32,7 +32,7 @@ public class CraftRunes extends TreeTask {
         if (altar == null) return super.execute();
         altar.interact("Craft-rune");
         Time.sleepUntil(() -> !Inventory.contains("Pure essence") && !Players.getLocal().isAnimating(), Random.high(4900, 5100));
-        if (shouldTeleportOut) Time.sleep(650, 800);
+        if (shouldTeleportOut) Time.sleep(680, 800);
         return super.execute();
     }
 

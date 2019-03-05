@@ -77,6 +77,11 @@ public class RunecraftGUI extends JFrame {
             queuePanel.setVisible(isUsingQueuing);
             pack();
         });
+        taskList.addListSelectionListener(e -> {
+            final int selectedIndex = taskList.getSelectedIndex();
+            if (selectedIndex == -1) return;
+            ((DefaultListModel) taskList.getModel()).remove(selectedIndex);
+        });
         untilInsufficientSuppliesCheckBox.addActionListener(e -> {
             final boolean isUsingLevelDefinedStop = !untilInsufficientSuppliesCheckBox.isSelected();
             stopLevelLabel.setEnabled(isUsingLevelDefinedStop);
