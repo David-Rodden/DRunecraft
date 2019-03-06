@@ -5,6 +5,7 @@ import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
+import org.rspeer.ui.Log;
 import task_structure.TreeTask;
 
 public class WalkToSpecified extends TreeTask {
@@ -35,6 +36,7 @@ public class WalkToSpecified extends TreeTask {
 
     /**
      * Only run when no destination is specified within constructor
+     *
      * @param specified
      * @return
      */
@@ -45,7 +47,11 @@ public class WalkToSpecified extends TreeTask {
             Time.sleepUntil(Movement::isRunEnabled, Random.high(950, 1400));
             runThreshold = Random.high(15, 30);
         }
-        Movement.walkTo(specified);
+        try {
+            Movement.walkTo(specified);
+        } catch (final IllegalArgumentException e) {
+            Log.info("Web issue encountered, ask Zach to fix.");
+        }
         Time.sleepUntil(() -> !Players.getLocal().isAnimating() && (!allowForRunAction && !Movement.isDestinationSet()) || Movement.getDestinationDistance() < MAXIMUM_DESTINATION_DISTANCE * (allowForRunAction ? 2 : 1), Random.high(5000, 6000));
         return super.execute();
     }
