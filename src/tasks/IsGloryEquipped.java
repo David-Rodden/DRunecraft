@@ -1,5 +1,6 @@
 package tasks;
 
+import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.EquipmentSlot;
 import task_structure.TreeTask;
 

@@ -27,4 +27,9 @@ public class WithdrawAbyssEquipment extends TreeTask {
         Time.sleepUntil(() -> Inventory.contains(missingPiece), Random.high(2900, 3300));
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Withdrawing equipment";
+    }
 }

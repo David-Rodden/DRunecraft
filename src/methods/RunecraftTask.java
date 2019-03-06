@@ -35,6 +35,8 @@ public class RunecraftTask {
             if (guiReference.isUsingLargePouch()) settings.add("Large pouch");
             if (guiReference.isUsingGiantPouch()) settings.add("Giant pouch");
             settings.addAll(guiReference.getObstacles());
+            final String loadout = guiReference.getTraversalSetting();
+            if (loadout != null && !loadout.isEmpty()) settings.add(loadout);
             equipment = new AbyssEquipment(guiReference.getHelm(), guiReference.getChest(), guiReference.getLegs(), guiReference.getFeet(), guiReference.getHands(), guiReference.getShield());
             abyssRuneSpecifier = guiReference.getAbyssRuneSpecifier();
             foodChoice = guiReference.getFoodChoice();

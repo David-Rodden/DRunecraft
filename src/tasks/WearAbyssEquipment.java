@@ -31,4 +31,9 @@ public class WearAbyssEquipment extends TreeTask {
         }
         return super.execute();
     }
+
+    @Override
+    public String toString() {
+        return "Putting on equipment";
+    }
 }

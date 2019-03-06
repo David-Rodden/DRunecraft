@@ -1,10 +1,17 @@
 package display;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import methods.CraftMethod;
 import methods.CraftMethods;
 import methods.RunecraftTask;
 import org.rspeer.runetek.api.ClientSupplier;
 import org.rspeer.runetek.api.component.tab.EquipmentSlot;
+import org.rspeer.script.Script;
 import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 import utils.AbyssLoadouts;
@@ -13,6 +20,7 @@ import utils.FoodTypes;
 import utils.RuneTypes;
 
 import javax.swing.*;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -57,9 +65,12 @@ public class RunecraftGUI extends JFrame {
     private Class<?> craftClass;
     private boolean hasBeenSet;
     private final Queue<RunecraftTask> runecraftTasks;
+    private final java.lang.reflect.Type type;
 
     public RunecraftGUI() {
         super("DRunecraft Selection");
+        type = new TypeToken<List<String>>() {
+        }.getType();
         runecraftTasks = new LinkedList<>();
         hasBeenSet = false;
         setContentPane(selectionPanel);
@@ -82,6 +93,7 @@ public class RunecraftGUI extends JFrame {
         });
         armorUsagePanel.setVisible(false);
         specifyArmorUsageCheckBox.addActionListener(e -> {
+            if (doesEquipmentFileExist()) loadEquipmentChoice();
             armorUsagePanel.setVisible(specifyArmorUsageCheckBox.isSelected());
             pack();
         });
@@ -98,6 +110,7 @@ public class RunecraftGUI extends JFrame {
             if (!handsText.isEmpty()) hands.setText(handsText);
             final String shieldText = EquipmentSlot.OFFHAND.getItemName();
             if (!shieldText.isEmpty()) offhand.setText(shieldText);
+            saveEquipmentChoice();
         });
         queueSpecifications.setVisible(false);
         queuePanel.setVisible(false);
@@ -183,28 +196,40 @@ public class RunecraftGUI extends JFrame {
         return giantPouchCheckBox.isSelected();
     }
 
+    public String getTraversalSetting() {
+        final AbyssLoadouts loadoutChosen = (AbyssLoadouts) traversalChoice.getSelectedItem();
+        if (loadoutChosen == null) return null;
+        return loadoutChosen.equals(AbyssLoadouts.MINING_LOADOUT) ? "pickaxe" : loadoutChosen.equals(AbyssLoadouts.WOODCUTTING_LOADOUT) ? "axe" : "";
+    }
+
     public String getHelm() {
-        return helm.getText();
+        final String text = helm.getText();
+        return text.equals("None") ? "" : text;
     }
 
     public String getChest() {
-        return chest.getText();
+        final String text = chest.getText();
+        return text.equals("None") ? "" : text;
     }
 
     public String getLegs() {
-        return legs.getText();
+        final String text = legs.getText();
+        return text.equals("None") ? "" : text;
     }
 
     public String getFeet() {
-        return feet.getText();
+        final String text = feet.getText();
+        return text.equals("None") ? "" : text;
     }
 
     public String getHands() {
-        return hands.getText();
+        final String text = hands.getText();
+        return text.equals("None") ? "" : text;
     }
 
     public String getShield() {
-        return offhand.getText();
+        final String text = offhand.getText();
+        return text.equals("None") ? "" : text;
     }
 
     public Class<?> getCraftClass() {
@@ -265,5 +290,43 @@ public class RunecraftGUI extends JFrame {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private void saveEquipmentChoice() {
+        final File equipmentFile = new File(Script.getDataDirectory() + "/drunecraft_equipment.json");
+        try {
+            JsonWriter jWriter = new JsonWriter(new FileWriter(equipmentFile));
+            final List<String> equipment = Arrays.asList(getHelm(), getChest(), getLegs(), getFeet(), getHands(), getShield());
+            Gson gson = new GsonBuilder().create();
+            JsonElement jElement = gson.toJsonTree(equipment, type);
+            gson.toJson(jElement, jWriter);
+            jWriter.flush();
+            jWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean doesEquipmentFileExist() {
+        return new File(Script.getDataDirectory() + "/drunecraft_equipment.json").exists();
+    }
+
+    private void loadEquipmentChoice() {
+        final File equipmentFile = new File(Script.getDataDirectory() + "/drunecraft_equipment.json");
+        try {
+            final JsonReader reader = new JsonReader(new FileReader(equipmentFile));
+            Gson gson = new GsonBuilder().create();
+            final List<String> equipment = gson.fromJson(reader, type);
+            final List<JLabel> labels = Arrays.asList(helm, chest, legs, feet, hands, offhand);
+            for (int i = 0; i < labels.size(); i++) {
+                final String focused = equipment.get(i);
+                if (focused.isEmpty()) continue;
+                labels.get(i).setText(focused);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }

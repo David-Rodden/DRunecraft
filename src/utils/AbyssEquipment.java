@@ -4,7 +4,13 @@ import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.Inventory;
 
 public class AbyssEquipment {
-    private final String head, chest, legs, feet, hands, offhand;
+    private final String head;
+    private final String chest;
+    private final String legs;
+    private final String feet;
+    private final String hands;
+
+    private final String offhand;
 
     public AbyssEquipment(final String head, final String chest, final String legs, final String feet, final String hands, final String offhand) {
         this.head = head;
@@ -15,16 +21,40 @@ public class AbyssEquipment {
         this.offhand = offhand;
     }
 
-    private boolean hasBeenSet() {
-        return head != null && chest != null && legs != null && feet != null && hands != null && offhand != null;
+    public String getHead() {
+        return head;
+    }
+
+    public String getChest() {
+        return chest;
+    }
+
+    public String getLegs() {
+        return legs;
+    }
+
+    public String getFeet() {
+        return feet;
+    }
+
+    public String getHands() {
+        return hands;
+    }
+
+    public String getOffhand() {
+        return offhand;
+    }
+
+    private boolean hasntBeenSet() {
+        return head.isEmpty() && chest.isEmpty() && legs.isEmpty() && feet.isEmpty() && hands.isEmpty() && offhand.isEmpty();
     }
 
     public boolean isWearingEquipment() {
-        return !hasBeenSet() || Equipment.containsAll(head, chest, legs, feet, hands, offhand);
+        return hasntBeenSet() || Equipment.containsAll(head, chest, legs, feet, hands, offhand);
     }
 
     public boolean isEquipmentInInventory() {
-        return !hasBeenSet() || Inventory.contains(head, chest, legs, feet, hands, offhand);
+        return hasntBeenSet() || Inventory.contains(head, chest, legs, feet, hands, offhand);
     }
 
     /**
