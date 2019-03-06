@@ -5,6 +5,7 @@ import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
 import task_structure.TreeScript;
+import utils.AbyssEquipment;
 import utils.FoodTypes;
 import utils.RuneTypes;
 
@@ -17,6 +18,7 @@ public class RunecraftTask {
     private final String methodName;
     private final boolean usingAbyss, usingClanWars, adNauseam;
     private final Set<String> settings;
+    private AbyssEquipment equipment;
     private RuneTypes abyssRuneSpecifier;
     private FoodTypes foodChoice;
     private int levelGoal;
@@ -33,6 +35,7 @@ public class RunecraftTask {
             if (guiReference.isUsingLargePouch()) settings.add("Large pouch");
             if (guiReference.isUsingGiantPouch()) settings.add("Giant pouch");
             settings.addAll(guiReference.getObstacles());
+            equipment = new AbyssEquipment(guiReference.getHelm(), guiReference.getChest(), guiReference.getLegs(), guiReference.getFeet(), guiReference.getHands(), guiReference.getShield());
             abyssRuneSpecifier = guiReference.getAbyssRuneSpecifier();
             foodChoice = guiReference.getFoodChoice();
         }
@@ -49,7 +52,7 @@ public class RunecraftTask {
         handler.wipeCachedData();
         for (final String setting : settings) handler.addNotedSetting(setting);
         try {
-            return (CraftMethod) (usingAbyss ? usingClanWars ? craftClass.getDeclaredConstructor(TreeScript.class, RuneTypes.class).newInstance(handler, abyssRuneSpecifier) : craftClass.getConstructor(TreeScript.class, RuneTypes.class, FoodTypes.class).newInstance(handler, abyssRuneSpecifier, foodChoice) : craftClass.getDeclaredConstructor(TreeScript.class).newInstance(handler));
+            return (CraftMethod) (usingAbyss ? usingClanWars ? craftClass.getDeclaredConstructor(TreeScript.class, RuneTypes.class, AbyssEquipment.class).newInstance(handler, abyssRuneSpecifier, equipment) : craftClass.getConstructor(TreeScript.class, RuneTypes.class, FoodTypes.class, AbyssEquipment.class).newInstance(handler, abyssRuneSpecifier, foodChoice, equipment) : craftClass.getDeclaredConstructor(TreeScript.class).newInstance(handler));
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }

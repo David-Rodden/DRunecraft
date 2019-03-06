@@ -4,6 +4,7 @@ import methods.CraftMethod;
 import methods.CraftMethods;
 import methods.RunecraftTask;
 import org.rspeer.runetek.api.ClientSupplier;
+import org.rspeer.runetek.api.component.tab.EquipmentSlot;
 import org.rspeer.ui.Log;
 import task_structure.TreeScript;
 import utils.AbyssLoadouts;
@@ -43,6 +44,16 @@ public class RunecraftGUI extends JFrame {
     private JTextField levelDefinedInput;
     private JCheckBox untilInsufficientSuppliesCheckBox;
     private JLabel stopLevelLabel;
+    private JPanel armorPanel;
+    private JCheckBox specifyArmorUsageCheckBox;
+    private JPanel armorUsagePanel;
+    private JLabel helm;
+    private JLabel chest;
+    private JLabel legs;
+    private JLabel feet;
+    private JLabel hands;
+    private JLabel offhand;
+    private JButton configureWornArmorButton;
     private Class<?> craftClass;
     private boolean hasBeenSet;
     private final Queue<RunecraftTask> runecraftTasks;
@@ -68,6 +79,25 @@ public class RunecraftGUI extends JFrame {
             staminaPanel.setVisible(!isAbyssVisible);
             abyssPanel.setVisible(isAbyssVisible);
             pack();
+        });
+        armorUsagePanel.setVisible(false);
+        specifyArmorUsageCheckBox.addActionListener(e -> {
+            armorUsagePanel.setVisible(specifyArmorUsageCheckBox.isSelected());
+            pack();
+        });
+        configureWornArmorButton.addActionListener(e -> {
+            final String helmText = EquipmentSlot.HEAD.getItemName();
+            if (!helmText.isEmpty()) helm.setText(helmText);
+            final String chestText = EquipmentSlot.CHEST.getItemName();
+            if (!chestText.isEmpty()) chest.setText(chestText);
+            final String legsText = EquipmentSlot.LEGS.getItemName();
+            if (!legsText.isEmpty()) legs.setText(legsText);
+            final String feetText = EquipmentSlot.FEET.getItemName();
+            if (!feetText.isEmpty()) feet.setText(feetText);
+            final String handsText = EquipmentSlot.HANDS.getItemName();
+            if (!handsText.isEmpty()) hands.setText(handsText);
+            final String shieldText = EquipmentSlot.OFFHAND.getItemName();
+            if (!shieldText.isEmpty()) offhand.setText(shieldText);
         });
         queueSpecifications.setVisible(false);
         queuePanel.setVisible(false);
@@ -151,6 +181,30 @@ public class RunecraftGUI extends JFrame {
 
     public boolean isUsingGiantPouch() {
         return giantPouchCheckBox.isSelected();
+    }
+
+    public String getHelm() {
+        return helm.getText();
+    }
+
+    public String getChest() {
+        return chest.getText();
+    }
+
+    public String getLegs() {
+        return legs.getText();
+    }
+
+    public String getFeet() {
+        return feet.getText();
+    }
+
+    public String getHands() {
+        return hands.getText();
+    }
+
+    public String getShield() {
+        return offhand.getText();
     }
 
     public Class<?> getCraftClass() {

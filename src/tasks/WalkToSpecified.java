@@ -13,6 +13,10 @@ public class WalkToSpecified extends TreeTask {
     private final boolean allowForRunAction;
     private int runThreshold;
 
+    WalkToSpecified() {
+        this(null, false);
+    }
+
     WalkToSpecified(final Position destination) {
         this(destination, false);
     }
@@ -29,16 +33,25 @@ public class WalkToSpecified extends TreeTask {
         return false;
     }
 
-    @Override
-    public int execute() {
-        if (destination == null) return super.execute();
+    /**
+     * Only run when no destination is specified within constructor
+     * @param specified
+     * @return
+     */
+    public int execute(final Position specified) {
+        if (specified == null) return super.execute();
         if (!Movement.isRunEnabled() && Movement.getRunEnergy() > runThreshold) {
             Movement.toggleRun(true);
             Time.sleepUntil(Movement::isRunEnabled, Random.high(950, 1400));
             runThreshold = Random.high(15, 30);
         }
-        Movement.walkTo(destination);
+        Movement.walkTo(specified);
         Time.sleepUntil(() -> !Players.getLocal().isAnimating() && (!allowForRunAction && !Movement.isDestinationSet()) || Movement.getDestinationDistance() < MAXIMUM_DESTINATION_DISTANCE * (allowForRunAction ? 2 : 1), Random.high(5000, 6000));
         return super.execute();
+    }
+
+    @Override
+    public int execute() {
+        return execute(destination);
     }
 }

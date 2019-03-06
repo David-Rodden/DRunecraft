@@ -25,7 +25,11 @@ public class WithdrawRing extends TreeTask {
         if (!Bank.contains(item -> item.getName().matches("Ring of dueling\\([2-8]\\)"))) {
             Time.sleepUntil(() -> Bank.contains(item -> item.getName().matches("Ring of dueling\\([2-8]\\)")), Random.high(500, 1000));
             withdrawAttempts++;
-            return withdrawAttempts == MAXIMUM_WITHDRAWAL_ATTEMPTS ? -1 : super.execute();
+            if (withdrawAttempts == MAXIMUM_WITHDRAWAL_ATTEMPTS) {
+                Log.severe("We've run out of Rings of dueling!");
+                return -1;
+            }
+            return super.execute();
         }
         for (int charge = 8; charge >= 2; charge--) {
             final String ring = "Ring of dueling(" + charge + ')';
@@ -34,7 +38,6 @@ public class WithdrawRing extends TreeTask {
             Time.sleepUntil(() -> Inventory.contains(ring), Random.high(3200, 4100));
             return super.execute();
         }
-        Log.severe("We've run out of Rings of dueling!");
         return -1;
     }
 

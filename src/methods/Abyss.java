@@ -6,11 +6,12 @@ import org.rspeer.runetek.api.movement.position.Position;
 import task_structure.TreeScript;
 import task_structure.TreeTask;
 import tasks.*;
+import utils.AbyssEquipment;
 import utils.FoodTypes;
 import utils.RuneTypes;
 
 public class Abyss extends CraftMethod {
-    public Abyss(final TreeScript handler, final RuneTypes runeType) {
+    public Abyss(final TreeScript handler, final RuneTypes runeType, final AbyssEquipment equipment) {
         super(runeType.getId());
         final int miniquestCompleted = Varps.get(491);  //1073799168?
         handler.addNotedPosition("edgeville", new Position(3088, 3502));
@@ -26,22 +27,28 @@ public class Abyss extends CraftMethod {
         TreeTask fourth = third.setLeft(new IsBankOpen());
         TreeTask fifth = fourth.setLeft(new IsNearBank());
         TreeTask sixth = fifth.setLeft(new IsNearClanWars(handler));
-        sixth.setLeft(new TeleportToClanWars(handler));
+        TreeTask seventh = sixth.setLeft(new IsRingEquipped());
+        seventh.setLeft(new WalkToBank());
+        seventh.setRight(new TeleportToClanWars(handler));
         sixth.setRight(new WalkToBank(BankLocation.CLAN_WARS));
         fifth.setRight(new OpenBank());
         fifth = fourth.setRight(new ArePouchesInInventory(handler));
         fifth.setLeft(new WithdrawPouches(handler));
-        sixth = fifth.setRight(new IsRingEquipped());
-        TreeTask seventh = sixth.setLeft(new IsRingInInventory());
-        seventh.setLeft(new WithdrawRing());
-        seventh.setRight(new EquipRing());
-        seventh = sixth.setRight(new IsGloryEquipped());
-        TreeTask eighth = seventh.setLeft(new IsGloryInInventory());
-        eighth.setLeft(new WithdrawGlory());
-        eighth.setRight(new EquipGlory());
-        eighth = seventh.setRight(new IsBadGloryInInventory());
-        eighth.setLeft(new WithdrawPureEssence());
-        eighth.setRight(new DepositBadGlory());
+        sixth = fifth.setRight(new IsWearingAbyssEquipment(equipment));
+        seventh = sixth.setLeft(new IsAbyssEquipmentInInventory(equipment));
+        seventh.setLeft(new WithdrawAbyssEquipment(equipment));
+        seventh.setRight(new WearAbyssEquipment(equipment));
+        seventh = sixth.setRight(new IsRingEquipped());
+        TreeTask eighth = seventh.setLeft(new IsRingInInventory());
+        eighth.setLeft(new WithdrawRing());
+        eighth.setRight(new EquipRing());
+        eighth = sixth.setRight(new IsGloryEquipped());
+        TreeTask ninth = eighth.setLeft(new IsGloryInInventory());
+        ninth.setLeft(new WithdrawGlory());
+        ninth.setRight(new EquipGlory());
+        ninth = eighth.setRight(new IsBadGloryInInventory());
+        ninth.setLeft(new WithdrawPureEssence());
+        ninth.setRight(new DepositBadGlory());
         fourth = third.setRight(new DoPouchesNeedFilling(handler));
         fourth.setLeft(new EmptyPouches(handler));
         fourth.setRight(new TeleportToClanWars(handler));
@@ -51,7 +58,7 @@ public class Abyss extends CraftMethod {
         sixth = fifth.setLeft(new IsInAbyss(handler));
         seventh = sixth.setLeft(new IsNearEdgeville(handler));
         eighth = seventh.setLeft(new IsInFFA(handler));
-        TreeTask ninth = eighth.setLeft(new IsNearClanWars(handler));
+        ninth = eighth.setLeft(new IsNearClanWars(handler));
         ninth.setLeft(new TeleportToClanWars(handler));
         TreeTask tenth = ninth.setRight(new IsBeingHunted(handler));
         TreeTask eleventh = tenth.setLeft(new HasNecessaryAbyssItems(handler));
@@ -104,7 +111,7 @@ public class Abyss extends CraftMethod {
         setHead(head);
     }
 
-    public Abyss(final TreeScript handler, final RuneTypes runeType, final FoodTypes foodType) {
+    public Abyss(final TreeScript handler, final RuneTypes runeType, final FoodTypes foodType, final AbyssEquipment equipment) {
         super(runeType.getId());
         handler.addNotedPosition("edgeville", new Position(3088, 3502));
         handler.addNotedPosition("mage", new Position(3107, 3557));
@@ -116,29 +123,35 @@ public class Abyss extends CraftMethod {
         TreeTask fourth = third.setLeft(new IsBankOpen());
         TreeTask fifth = fourth.setLeft(new IsNearBank());
         TreeTask sixth = fifth.setLeft(new IsNearEdgeville(handler));
-        sixth.setLeft(new TeleportToEdgeville(handler));
+        TreeTask seventh = sixth.setLeft(new IsGloryEquipped());
+        seventh.setLeft(new WalkToBank());
+        seventh.setLeft(new TeleportToEdgeville(handler));
         sixth.setRight(new WalkToBank(BankLocation.EDGEVILLE));
         fifth.setRight(new OpenBank());
         fifth = fourth.setRight(new ArePouchesInInventory(handler));
         fifth.setLeft(new WithdrawPouches(handler));
-        sixth = fifth.setRight(new IsGloryEquipped());
-        TreeTask seventh = sixth.setLeft(new IsGloryInInventory());
-        seventh.setLeft(new WithdrawGlory());
-        seventh.setRight(new EquipGlory());
-        seventh = sixth.setRight(new IsBadGloryInInventory());
-        TreeTask eighth = seventh.setLeft(new IsHealthBelowThreshold(2));
-        TreeTask ninth = eighth.setLeft(new ShouldUseStaminaPotion(handler));
-        TreeTask tenth = ninth.setLeft(new HasStaminaPotionInInventory(true));
-        tenth.setLeft(new WithdrawPureEssence());
-        tenth.setRight(new DepositStaminaPotion());
-        tenth = ninth.setRight(new HasStaminaPotionInInventory());
-        tenth.setLeft(new WithdrawStaminaPotion());
-        tenth.setRight(new DrinkStaminaPotion());
+        sixth = fifth.setRight(new IsWearingAbyssEquipment(equipment));
+        seventh = sixth.setLeft(new IsAbyssEquipmentInInventory(equipment));
+        seventh.setLeft(new WithdrawAbyssEquipment(equipment));
+        seventh.setRight(new WearAbyssEquipment(equipment));
+        seventh = sixth.setRight(new IsGloryEquipped());
+        TreeTask eighth = seventh.setLeft(new IsGloryInInventory());
+        eighth.setLeft(new WithdrawGlory());
+        eighth.setRight(new EquipGlory());
+        eighth = seventh.setRight(new IsBadGloryInInventory());
+        TreeTask ninth = eighth.setLeft(new IsHealthBelowThreshold(2));
+        TreeTask tenth = ninth.setLeft(new ShouldUseStaminaPotion(handler));
+        TreeTask eleventh = tenth.setLeft(new HasStaminaPotionInInventory(true));
+        eleventh.setLeft(new WithdrawPureEssence());
+        eleventh.setRight(new DepositStaminaPotion());
+        eleventh = tenth.setRight(new HasStaminaPotionInInventory());
+        eleventh.setLeft(new WithdrawStaminaPotion());
+        eleventh.setRight(new DrinkStaminaPotion());
         final String foodName = foodType.toString();
-        ninth = eighth.setRight(new IsFoodInInventory(foodName));
-        ninth.setLeft(new WithdrawFood(foodName));
-        ninth.setRight(new EatFood(foodName));
-        seventh.setRight(new DepositBadGlory());
+        tenth = ninth.setRight(new IsFoodInInventory(foodName));
+        tenth.setLeft(new WithdrawFood(foodName));
+        tenth.setRight(new EatFood(foodName));
+        eighth.setRight(new DepositBadGlory());
         fourth = third.setRight(new DoPouchesNeedFilling(handler));
         fourth.setLeft(new EmptyPouches(handler));
         fourth.setRight(new TeleportToEdgeville(handler));
@@ -151,7 +164,7 @@ public class Abyss extends CraftMethod {
         ninth = eighth.setLeft(new IsHealthBelowThreshold(2));
         tenth = ninth.setLeft(new HasNecessaryAbyssItems(handler));
         tenth.setLeft(new OpenBank());
-        TreeTask eleventh = tenth.setRight(new IsNearEdgeville(handler));
+        eleventh = tenth.setRight(new IsNearEdgeville(handler));
         eleventh.setLeft(new TeleportToEdgeville(handler));
         eleventh.setRight(new WalkToMage(handler));
         ninth.setRight(new OpenBank());
